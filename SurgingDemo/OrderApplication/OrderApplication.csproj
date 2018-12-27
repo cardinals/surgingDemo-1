@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="surging" Version="0.9.5.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IOrderApplication\IOrderApplication.csproj" />
+    <ProjectReference Include="..\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
+    <ProjectReference Include="..\Surging.Core.Protocol.WS\Surging.Core.Protocol.WS.csproj" />
+    <ProjectReference Include="..\WebSocket\WebSocketCore\WebSocketCore.csproj" />
   </ItemGroup>
 
 </Project>
