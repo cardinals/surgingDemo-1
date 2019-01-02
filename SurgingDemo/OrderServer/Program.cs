@@ -23,6 +23,7 @@ namespace OrderServer
                 {
                     builder.AddMicroService(option =>
                     {
+                      
                         option.AddServiceRuntime()
                         .AddRelateService()
                         .AddConfigurationWatch()

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IOrderApplication\IOrderApplication.csproj" />
+    <ProjectReference Include="..\LZN.Data\LZN.Data.csproj" />
     <ProjectReference Include="..\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
     <ProjectReference Include="..\Surging.Core.Protocol.WS\Surging.Core.Protocol.WS.csproj" />

@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using LZN.EntityFramwork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
-
+using AutoMapper;
 namespace OrderServer
 {
     public class Startup
@@ -19,8 +20,16 @@ namespace OrderServer
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
+            services.AddDbContext<UnitOfWorkDbContext>(opt =>
+            {
+
+            });
+            services.AddAutoMapper();
+            services.AddScoped<IUnitOfWorkDbContext, UnitOfWorkDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
+            //新模块组件注册
+            builder.RegisterModule<DefaultModuleRegister>();
             ServiceLocator.Current = builder.Build();
             return ServiceLocator.Current;
         }
