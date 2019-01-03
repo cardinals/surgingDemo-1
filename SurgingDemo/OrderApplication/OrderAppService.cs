@@ -33,7 +33,7 @@ namespace OrderApplication
         {
             personRequestDto.Id = Guid.NewGuid().ToString();
             var person = _mapper.Map<PersonRequestDto, Person>(personRequestDto);
-            await _personRespository.Add(person);
+            await _personRespository.InsertAsync(person);
             return await _unitOfWork.SaveChangesAsync();
 
 
@@ -46,7 +46,7 @@ namespace OrderApplication
 
         public async Task<IEnumerable<PersonQueryDto>> GetAll()
         {
-            var list = await _personRespository.Entities().ToListAsync();
+            var list = await _personRespository.GetAll().ToListAsync();
 
             return list.MapToList<Person, PersonQueryDto>();
 
@@ -54,10 +54,7 @@ namespace OrderApplication
 
         public async Task<int> Modify(PersonRequestDto personRequestDto)
         {
-            personRequestDto.Id = Guid.NewGuid().ToString();
-            var person = _mapper.Map<PersonRequestDto, Person>(personRequestDto);
-            await _personRespository.Add(person);
-            return await _unitOfWork.SaveChangesAsync();
+            return await Task.FromResult<int>(121);
         }
 
     }

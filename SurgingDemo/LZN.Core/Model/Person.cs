@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LZN.Core.Model
 {
-    public class Person : IEntity<string>
+    public class Person : Entity<string>
     {
         [Key]
         public  string Id { set; get; }
@@ -25,6 +25,7 @@ namespace LZN.Core.Model
         public int IsDelete { set; get; }
 
         public DateTime CreateDate { set; get; }
-       
+
+      
     }
 }

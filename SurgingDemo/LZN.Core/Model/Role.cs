@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LZN.Core.Model
 {
-    public class Role : IEntity<string>
+    public class Role : Entity<string>
     {
         [Key]
         public string Id { set;get; }

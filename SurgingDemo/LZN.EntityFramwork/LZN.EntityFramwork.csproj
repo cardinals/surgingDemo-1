@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LZN.Core\LZN.Core.csproj" />
+    <ProjectReference Include="..\LZN.Data\LZN.Data.csproj" />
   </ItemGroup>
 
 </Project>
