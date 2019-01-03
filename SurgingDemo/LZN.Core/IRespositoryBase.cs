@@ -17,7 +17,7 @@ namespace LZN.Core
     {
 
 
-        Task<IList<TEntity>> Entities();
+        IQueryable<TEntity> Entities();
         Task Add(TEntity entity, bool isSave = true);
 
       //  Task<TEntity> GetEntityById(string Id);

@@ -52,11 +52,11 @@ namespace LZN.EntityFramwork
             _dbSet = _dbContext.Set<TEntity>();
 
         }
-        public async Task< IList<TEntity>> Entities()
+        public IQueryable<TEntity> Entities()
         {
-            
 
-                return await _dbSet.ToListAsync();
+
+            return _dbSet;
             
         }
         public async Task Add(TEntity entity, bool isSave = true)

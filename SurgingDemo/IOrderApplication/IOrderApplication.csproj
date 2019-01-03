@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="protobuf-net" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LZN.Core\LZN.Core.csproj" />
-    <ProjectReference Include="..\Surging.Core.KestrelHttpServer\Surging.Core.KestrelHttpServer.csproj" />
-    <ProjectReference Include="..\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
-    <ProjectReference Include="..\Surging.Core.Protocol.WS\Surging.Core.Protocol.WS.csproj" />
-    <ProjectReference Include="..\Surging.Core.System\Surging.Core.System.csproj" />
+    <ProjectReference Include="..\LZN.Data\LZN.Data.csproj" />
   </ItemGroup>
 
 </Project>

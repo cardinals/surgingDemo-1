@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using LZN.Data;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -11,9 +12,10 @@ namespace OrderServer
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //注册当前程序集中以“Ser”结尾的类,暴漏类实现的所有接口，生命周期为PerLifetimeScope
-            //builder.RegisterAssemblyTypes(GetAssembly("LZN.Application")).Where(t => t.Name.EndsWith("Service"))
-            //    .AsImplementedInterfaces().InstancePerLifetimeScope();
+            var baseType = typeof(IDependency);
+          builder.RegisterAssemblyTypes(GetAssembly("OrderApplication"))
+                .Where(t=>baseType.IsAssignableFrom(t)&&t!= baseType)
+                .AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(GetAssembly("LZN.Core"), GetAssembly("LZN.EntityFramwork"))
                 .Where(t => t.Name.EndsWith("Respository")).AsImplementedInterfaces().InstancePerLifetimeScope();

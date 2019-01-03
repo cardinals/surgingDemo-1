@@ -8,7 +8,7 @@ namespace IOrderApplication.Dto
 {
     [ProtoContract]
     [Serializable]
-    public class PersonRequestDto : BaseDto
+    public class PersonQueryDto : BaseDto
     {
 
         [ProtoMember(1)]

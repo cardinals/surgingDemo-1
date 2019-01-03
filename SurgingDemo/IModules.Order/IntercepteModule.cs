@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IOrderApplication
+namespace IModules.Order
 {
-   public class IntercepteModule: SystemModule
+    public class IntercepteModule : SystemModule
     {
         public override void Initialize(CPlatformContainer serviceProvider)
         {

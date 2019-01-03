@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IOrderApplication\IOrderApplication.csproj" />
+    <ProjectReference Include="..\IModules.Order\IModules.Order.csproj" />
     <ProjectReference Include="..\LZN.EntityFramwork\LZN.EntityFramwork.csproj" />
+    <ProjectReference Include="..\Modules.Order\Modules.Order.csproj" />
     <ProjectReference Include="..\OrderApplication\OrderApplication.csproj" />
     <ProjectReference Include="..\Surging.Core.Caching\Surging.Core.Caching.csproj" />
     <ProjectReference Include="..\Surging.Core.Codec.MessagePack\Surging.Core.Codec.MessagePack.csproj" />
