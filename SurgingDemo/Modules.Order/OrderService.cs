@@ -1,6 +1,8 @@
-﻿using IModules.Order;
-using IOrderApplication;
-using IOrderApplication.Dto;
+﻿
+using MicroService.Data.Validation;
+using MicroService.IApplication.Order;
+using MicroService.IApplication.Order.Dto;
+using MicroService.IModules.Order;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 using System;
@@ -8,7 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modules.Order
+namespace MicroService.Modules.Order
 {
     [ModuleName("Order")]
    public class OrderService: ProxyServiceBase, IOrderService
@@ -22,12 +24,15 @@ namespace Modules.Order
         {
             return await Task.FromResult("hello world");
         }
-        public async Task<int> Add(PersonRequestDto personRequestDto)
+        public async Task<JsonResponse> Add(PersonRequestDto personRequestDto)
         {
            return await _orderAppService.Create(personRequestDto);
         }
 
-    
+       public async Task<string> AddAndGetId(PersonRequestDto personRequestDto)
+        {
+           return await _orderAppService.InsertAndGetId(personRequestDto);
+        }
 
         public async Task<IEnumerable<PersonQueryDto>> GetAll()
         {

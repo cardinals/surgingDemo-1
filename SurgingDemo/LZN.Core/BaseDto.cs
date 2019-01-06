@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LZN.Core
+namespace MicroService.Core
 {
   public  class BaseDto
     {

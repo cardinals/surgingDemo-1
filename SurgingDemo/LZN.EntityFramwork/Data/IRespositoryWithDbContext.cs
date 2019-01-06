@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LZN.EntityFramwork.Data
+namespace MicroService.EntityFramwork.Data
 {
   public  interface IRespositoryWithDbContext
     {

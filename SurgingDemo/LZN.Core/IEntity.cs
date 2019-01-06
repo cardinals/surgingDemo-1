@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LZN.Core
+namespace MicroService.Core
 {
 
     public interface IEntity : IEntity<string>
     {
-
+      
     }
 
-   public interface IEntity<TPrimaryKey>
+    public interface IEntity<TPrimaryKey>
     {
         TPrimaryKey Id { set; get; }
 

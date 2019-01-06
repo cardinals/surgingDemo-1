@@ -1,13 +1,13 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using LZN.EntityFramwork;
+using MicroService.EntityFramwork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 using AutoMapper;
-namespace OrderServer
+namespace MicroService.Server.Order
 {
     public class Startup
     {

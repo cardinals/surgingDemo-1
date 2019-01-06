@@ -1,26 +1,30 @@
 ﻿using Autofac;
-using LZN.Data;
+using MicroService.Data;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
-namespace OrderServer
+namespace MicroService.Server.Order
 {
    public class DefaultModuleRegister: Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             var baseType = typeof(IDependency);
-          builder.RegisterAssemblyTypes(GetAssembly("OrderApplication"))
+          builder.RegisterAssemblyTypes(GetAssembly("MicroService.Application.Order"))
                 .Where(t=>baseType.IsAssignableFrom(t)&&t!= baseType)
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(GetAssembly("LZN.Core"), GetAssembly("LZN.EntityFramwork"))
-                .Where(t => t.Name.EndsWith("Respository")).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(GetAssembly("MicroService.Respository.Order"))
+              .Where(t => baseType.IsAssignableFrom(t) && t != baseType)
+              .AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterAssemblyTypes(GetAssembly("LZN.Core"), GetAssembly("LZN.EntityFramwork"))
+            //builder.RegisterAssemblyTypes(GetAssembly("LZN.Core"), GetAssembly("LZN.EntityFramwork"))
+            //    .Where(t => t.Name.EndsWith("Respository")).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(GetAssembly("MicroService.Core"), GetAssembly("MicroService.EntityFramwork"))
                 .Where(t => t.Name.EndsWith("ContextBase")).AsImplementedInterfaces().InstancePerLifetimeScope();
             //builder.RegisterAssemblyTypes(GetAssembly("LZN.EntityFramwork"))
             //  .Where(t => t.Name.EndsWith("DbContext")).AsImplementedInterfaces().InstancePerLifetimeScope();

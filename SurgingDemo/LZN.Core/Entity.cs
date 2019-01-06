@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace LZN.Core
+namespace MicroService.Core
 {
     [Serializable]
     public abstract class Entity : Entity<int>, IEntity
@@ -16,6 +17,7 @@ namespace LZN.Core
         /// <summary>
         /// Unique identifier for this entity.
         /// </summary>
+        [Key]
         public virtual TPrimaryKey Id { get; set; }
         public virtual int IsDelete { set; get; }
         public virtual DateTime CreateDate { set; get; }

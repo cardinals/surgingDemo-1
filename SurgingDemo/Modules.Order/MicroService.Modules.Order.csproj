@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IModules.Order\MicroService.IModules.Order.csproj" />
+    <ProjectReference Include="..\IOrderApplication\MicroService.IApplication.Order.csproj" />
+    <ProjectReference Include="..\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
+    <ProjectReference Include="..\Surging.Core.Protocol.WS\Surging.Core.Protocol.WS.csproj" />
+    <ProjectReference Include="..\WebSocket\WebSocketCore\WebSocketCore.csproj" />
+  </ItemGroup>
+
+</Project>

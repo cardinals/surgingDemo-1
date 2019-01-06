@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IModules.Order
+namespace MicroService.IModules.Order
 {
     public class IntercepteModule : SystemModule
     {

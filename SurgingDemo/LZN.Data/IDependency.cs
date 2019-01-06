@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LZN.Data
+namespace MicroService.Data
 {
    public interface IDependency
     {

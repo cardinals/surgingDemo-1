@@ -10,7 +10,7 @@
     "Libuv": true,
     "SoBacklog": 100,
     "MaxConcurrentRequests": 20,
-    "ExecutionTimeoutInMilliseconds": 1000,
+    "ExecutionTimeoutInMilliseconds": 20000,
     "Protocol": "${Protocol}|None", //Http¡¢Tcp¡¢None
     "RootPath": "${RootPath}|D:\\userapp",
     "Ports": {

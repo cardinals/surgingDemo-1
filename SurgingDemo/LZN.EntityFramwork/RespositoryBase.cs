@@ -1,7 +1,7 @@
-﻿using LZN.Core;
-using LZN.Core.Data;
-using LZN.Data.Ext;
-using LZN.EntityFramwork.Data;
+﻿using MicroService.Core;
+using MicroService.Core.Data;
+using MicroService.Data.Ext;
+using MicroService.EntityFramwork.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LZN.EntityFramwork
+namespace MicroService.EntityFramwork
 {
     public abstract class RespositoryBase<TEntity>
        : RespositoryBase<TEntity, string>, IRespositoryBase<TEntity, string>
@@ -24,7 +24,7 @@ namespace LZN.EntityFramwork
 
 
     public abstract class RespositoryBase<TEntity, TPrimaryKey> :
-        LZN.Core.Data.IUnitOfWork,
+      IUnitOfWork,
          IRespositoryBase<TEntity, TPrimaryKey>
           where TEntity : class, IEntity<TPrimaryKey>
     {
@@ -36,7 +36,13 @@ namespace LZN.EntityFramwork
         //{
         //    return _dbContext;
         //}
+        public RespositoryBase(IUnitOfWorkDbContext dbContext)
+        {
 
+            _dbContext = (UnitOfWorkDbContext)dbContext;
+            _dbSet = _dbContext.Set<TEntity>();
+
+        }
         public DbContext GetDbContext()
         {
             return _dbContext;
@@ -48,7 +54,20 @@ namespace LZN.EntityFramwork
 
 
 
-          void AttachIfNot(TEntity entity)
+        #region private
+         TEntity GetFromChangeTrackerOrNull(TPrimaryKey id)
+        {
+            var entry = _dbContext.ChangeTracker.Entries()
+                .FirstOrDefault(
+                    ent =>
+                        ent.Entity is TEntity &&
+                        EqualityComparer<TPrimaryKey>.Default.Equals(id, (ent.Entity as TEntity).Id)
+                );
+
+            return entry?.Entity as TEntity;
+        }
+
+        void AttachIfNot(TEntity entity)
         {
             var entry = _dbContext.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
             if (entry != null)
@@ -58,7 +77,7 @@ namespace LZN.EntityFramwork
 
             _dbSet.Attach(entity);
         }
-          Expression<Func<TEntity, bool>> CreateEqualityExpressionForId(TPrimaryKey id)
+        Expression<Func<TEntity, bool>> CreateEqualityExpressionForId(TPrimaryKey id)
         {
             var lambdaParam = Expression.Parameter(typeof(TEntity));
 
@@ -69,19 +88,9 @@ namespace LZN.EntityFramwork
 
             return Expression.Lambda<Func<TEntity, bool>>(lambdaBody, lambdaParam);
         }
-        public RespositoryBase(IUnitOfWorkDbContext dbContext)
-        {
 
-            _dbContext = (UnitOfWorkDbContext)dbContext;
-            _dbSet = _dbContext.Set<TEntity>();
-
-        }
-        //public IQueryable<TEntity> Entities()
-        //{
-
-        //    return _dbSet;
-            
-        //}
+        #endregion
+      
         #region Select/Get/Query
         public IQueryable<TEntity> GetAll()
         {
@@ -190,11 +199,11 @@ namespace LZN.EntityFramwork
         #endregion
 
         #region Insert
-
         public async Task Add(TEntity entity, bool isSave = true)
         {
             await _dbSet.AddAsync(entity);
         }
+
         public TEntity Insert(TEntity entity)
         {
             return _dbSet.Add(entity).Entity;
@@ -202,18 +211,14 @@ namespace LZN.EntityFramwork
 
         public async Task<TEntity> InsertAsync(TEntity entity)
         {
-            return await Task.FromResult(Insert(entity));
+            
+            var entityEntry = await _dbContext.AddAsync(entity);
+            return entityEntry.Entity;
         }
 
         public TPrimaryKey InsertAndGetId(TEntity entity)
         {
             entity = Insert(entity);
-
-            if (entity.IsTransient())
-            {
-                _dbContext.SaveChanges();
-            }
-
             return entity.Id;
         }
 
@@ -221,48 +226,19 @@ namespace LZN.EntityFramwork
         {
             entity = await InsertAsync(entity);
 
-            if (entity.IsTransient())
-            {
-                await _dbContext.SaveChangesAsync();
-            }
-
             return entity.Id;
         }
-        public TEntity InsertOrUpdate(TEntity entity)
+
+        public void BatchInsert(IEnumerable<TEntity> entities)
         {
-            return entity.IsTransient()
-                ? Insert(entity)
-                : Update(entity);
+
+            _dbSet.AddRange(entities);
         }
 
-        public TPrimaryKey InsertOrUpdateAndGetId(TEntity entity)
+        public async Task BatchInsertAsync(IEnumerable<TEntity> entities)
         {
-            entity = InsertOrUpdate(entity);
-
-            if (entity.IsTransient())
-            {
-                _dbContext.SaveChanges();
-            }
-
-            return entity.Id;
+            await _dbSet.AddRangeAsync(entities);
         }
-        public async Task<TEntity> InsertOrUpdateAsync(TEntity entity)
-        {
-            return entity.IsTransient()
-                ? await InsertAsync(entity)
-                : await UpdateAsync(entity);
-        }
-        public async Task<TPrimaryKey> InsertOrUpdateAndGetIdAsync(TEntity entity)
-        {
-            entity = await InsertOrUpdateAsync(entity);
-
-            if (entity.IsTransient())
-            {
-                await _dbContext.SaveChangesAsync();
-            }
-
-            return entity.Id;
-        } 
         #endregion
 
         #region Update
@@ -290,6 +266,73 @@ namespace LZN.EntityFramwork
             var entity = await GetAsync(id);
             await updateAction(entity);
             return entity;
+        }
+        #endregion
+
+        #region Delete
+        public void Delete(TEntity entity)
+        {
+            AttachIfNot(entity);
+            _dbContext.Remove(entity);
+
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            await Task.FromResult(_dbSet.Remove(entity));
+        }
+
+        public void Delete(TPrimaryKey id)
+        {
+            var entity = GetFromChangeTrackerOrNull(id);
+            if (entity != null)
+            {
+                Delete(entity);
+                return;
+            }
+
+            entity = FirstOrDefault(id);
+            if (entity != null)
+            {
+                Delete(entity);
+                return;
+            }
+
+            //Could not found the entity, do nothing.
+        }
+
+
+        public async Task DeleteAsync(TPrimaryKey id)
+        {
+            Delete(id);
+            await Task.FromResult(0);
+        }
+
+        public void Delete(Expression<Func<TEntity, bool>> predicate)
+        {
+            foreach (var entity in GetAll().Where(predicate).ToList())
+            {
+                Delete(entity);
+            }
+        }
+
+        public async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            Delete(predicate);
+            await Task.FromResult(0);
+        }
+
+
+        public void BatchRemove(IEnumerable<TEntity> entities)
+        {
+
+            _dbSet.RemoveRange(entities);
+        }
+
+        public async Task BatchRemoveAsync(IEnumerable<TEntity> entities)
+        {
+            _dbSet.RemoveRange(entities);
+            await Task.FromResult(0);
         } 
         #endregion
 

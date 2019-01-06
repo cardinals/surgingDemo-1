@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LZN.Core.Data
+namespace MicroService.Core.Data
 {
     /// <summary>
     /// 业务单元操作接口

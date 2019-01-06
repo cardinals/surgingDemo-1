@@ -1,10 +1,10 @@
-﻿using LZN.Core;
+﻿using MicroService.Core;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IOrderApplication.Dto
+namespace MicroService.IApplication.Order.Dto
 {
     [ProtoContract]
     [Serializable]

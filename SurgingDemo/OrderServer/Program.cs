@@ -11,7 +11,7 @@ using Surging.Core.ServiceHosting;
 using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Configurations;
 
-namespace OrderServer
+namespace MicroService.Server.Order
 {
     class Program
     {
