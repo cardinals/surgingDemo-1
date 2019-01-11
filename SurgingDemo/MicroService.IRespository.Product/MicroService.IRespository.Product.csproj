@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LZN.Core\MicroService.Core.csproj" />
     <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
-    <ProjectReference Include="..\OrderEntitiy\MicroService.Entity.Order.csproj" />
+    <ProjectReference Include="..\MicroService.Entity.Product\MicroService.Entity.Product.csproj" />
   </ItemGroup>
 
 </Project>

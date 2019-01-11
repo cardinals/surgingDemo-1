@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MicroService.Entitiy.Order
+namespace MicroService.Entity.Order
 {
     public class Person : Entity<string>
     {

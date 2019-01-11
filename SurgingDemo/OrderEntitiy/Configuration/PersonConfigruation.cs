@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroService.Entitiy.Order.Configuration
+namespace MicroService.Entity.Order.Configuration
 {
   public  class PersonConfigruation: EntityMappingConfiguration<Person>
     {

@@ -1,5 +1,6 @@
 ﻿
 using MicroService.Core;
+using MicroService.Data.Configuration;
 using MicroService.Data.Mapping;
 using MicroService.EntityFramwork.Initialize;
 using Microsoft.EntityFrameworkCore;
@@ -30,15 +31,17 @@ namespace MicroService.EntityFramwork
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=112.74.59.197;uid=root;pwd=LZN520cy&xnn;database=Test;");
+            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
+            optionsBuilder.UseMySQL(connectionString);
+          
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             // modelBuilder.AddEntityConfigurationsFromAssembly(GetType().Assembly);
-
-           modelBuilder.AddEntityConfigurationsFromAssembly(GetAssembly("MicroService.Entitiy.Order"));
+            var assemblyName = ConfigManager.GetValue<string>("SqlConfig:EntityConfigurationAssembly");
+            modelBuilder.AddEntityConfigurationsFromAssembly(GetAssembly(assemblyName));
 
         
 

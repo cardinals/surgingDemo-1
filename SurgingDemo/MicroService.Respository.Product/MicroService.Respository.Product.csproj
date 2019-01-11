@@ -5,9 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IOrderRespository\MicroService.IRespository.Order.csproj" />
+    <ProjectReference Include="..\LZN.Core\MicroService.Core.csproj" />
+    <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
     <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
-    <ProjectReference Include="..\OrderEntitiy\MicroService.Entity.Order.csproj" />
+    <ProjectReference Include="..\MicroService.IRespository.Product\MicroService.IRespository.Product.csproj" />
   </ItemGroup>
 
 </Project>

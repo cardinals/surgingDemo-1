@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using MicroService.Data.Validation;
-using MicroService.Entity.Order;
+using MicroService.Entity.Product;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroService.Application.Order.Validators
+namespace MicroService.Application.Product.Validators
 {
-  public  class PersonValidator: AbstractValidator<Person>
+  public  class GoodsValidator: AbstractValidator<Goods>
     {
-        public PersonValidator()
+        public GoodsValidator()
         {
             RuleSet(ValidatorTypeConstants.Create, () =>
             {
@@ -25,7 +25,6 @@ namespace MicroService.Application.Order.Validators
         void BaseValidator()
         {
             RuleFor(per => per.Id).NotEmpty().WithMessage("Id不能为空");
-            RuleFor(per => per.RoleId).NotEmpty().WithMessage("RoleId不能为空");
 
         }
     }

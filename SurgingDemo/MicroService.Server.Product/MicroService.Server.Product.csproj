@@ -1,24 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.1.1" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="2.2.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IModules.Order\MicroService.IModules.Order.csproj" />
     <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
-    <ProjectReference Include="..\Modules.Order\MicroService.Modules.Order.csproj" />
-    <ProjectReference Include="..\OrderApplication\MicroService.Application.Order.csproj" />
-    <ProjectReference Include="..\OrderRespository\MicroService.Respository.Order.csproj" />
+    <ProjectReference Include="..\MicroService.Application.Product\MicroService.Application.Product.csproj" />
+    <ProjectReference Include="..\MicroService.IModules.Product\MicroService.IModules.Product.csproj" />
+    <ProjectReference Include="..\MicroService.Modules.Product\MicroService.Modules.Product.csproj" />
+    <ProjectReference Include="..\MicroService.Respository.Product\MicroService.Respository.Product.csproj" />
     <ProjectReference Include="..\Surging.Core.Caching\Surging.Core.Caching.csproj" />
     <ProjectReference Include="..\Surging.Core.Codec.MessagePack\Surging.Core.Codec.MessagePack.csproj" />
     <ProjectReference Include="..\Surging.Core.Codec.ProtoBuffer\Surging.Core.Codec.ProtoBuffer.csproj" />

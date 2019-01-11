@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MicroService.Respository.Order
 {
-    public class PersonRespository : RespositoryBase<MicroService.Entitiy.Order.Person>, IPersonRespository
+    public class PersonRespository : RespositoryBase<MicroService.Entity.Order.Person>, IPersonRespository
     {
 
 

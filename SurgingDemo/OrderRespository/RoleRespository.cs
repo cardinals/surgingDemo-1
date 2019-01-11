@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MicroService.Respository.Order
 {
-    public class RoleRespository : RespositoryBase<MicroService.Entitiy.Order.Role>, IRoleRespository
+    public class RoleRespository : RespositoryBase<MicroService.Entity.Order.Role>, IRoleRespository
     {
         public RoleRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
         {

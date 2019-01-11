@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using MicroService.Data.Ext;
 using MicroService.IApplication.Order;
 using MicroService.IRespository.Order;
-using MicroService.Entitiy.Order;
+using MicroService.Entity.Order;
 using MicroService.IApplication.Order.Dto;
 using MicroService.Core.Data;
 using MicroService.Data.Validation;
