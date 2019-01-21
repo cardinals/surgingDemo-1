@@ -42,8 +42,8 @@ namespace MicroService.EntityFramwork
             // modelBuilder.AddEntityConfigurationsFromAssembly(GetType().Assembly);
             var assemblyName = ConfigManager.GetValue<string>("SqlConfig:EntityConfigurationAssembly");
             modelBuilder.AddEntityConfigurationsFromAssembly(GetAssembly(assemblyName));
+           
 
-        
 
             //var assemblies = GetAssembly(Assembly.GetExecutingAssembly().Location);
 

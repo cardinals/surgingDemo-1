@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using MicroService.EntityFramwork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
@@ -22,10 +24,18 @@ namespace MicroService.Server.Org
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-          
+
+            services.AddDbContext<UnitOfWorkDbContext>(opt =>
+            {
+
+            });
+            services.AddAutoMapper();
+            services.AddScoped<IUnitOfWorkDbContext, UnitOfWorkDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
-          
+            //新模块组件注册
+            builder.RegisterModule<DefaultModuleRegister>();
+
             ServiceLocator.Current = builder.Build();
             return ServiceLocator.Current;
         }

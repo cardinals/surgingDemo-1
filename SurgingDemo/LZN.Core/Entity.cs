@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace MicroService.Core
@@ -14,14 +16,27 @@ namespace MicroService.Core
     [Serializable]
     public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
+
+        protected Entity()
+        {
+            IsDelete = 1;
+            CreateDate = DateTime.Now;
+        }
         /// <summary>
         /// Unique identifier for this entity.
         /// </summary>
         [Key]
+        [StringLength(36)]
         public virtual TPrimaryKey Id { get; set; }
+
         public virtual int IsDelete { set; get; }
+
         public virtual DateTime CreateDate { set; get; }
 
+        //[ConcurrencyCheck()]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[Column(TypeName = "timestamp")]
+        //public virtual DateTime Timestamp { set; get; }
         public virtual bool IsTransient()
         {
             if (EqualityComparer<TPrimaryKey>.Default.Equals(Id, default(TPrimaryKey)))

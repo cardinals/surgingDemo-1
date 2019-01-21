@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroService.IApplication.Org\MicroService.IApplication.Org.csproj" />
     <ProjectReference Include="..\MicroService.IModules.Org\MicroService.IModules.Org.csproj" />
     <ProjectReference Include="..\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />

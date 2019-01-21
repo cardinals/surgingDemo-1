@@ -23,5 +23,7 @@ namespace MicroService.Core
         int IsDelete { set; get; }
 
         DateTime CreateDate { set; get; }
+
+       // DateTime Timestamp { set; get; }
     }
 }

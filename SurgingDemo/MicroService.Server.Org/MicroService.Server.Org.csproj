@@ -6,12 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\MicroService.Application.Org\MicroService.Application.Org.csproj" />
+    <ProjectReference Include="..\MicroService.IApplication.Org\MicroService.IApplication.Org.csproj" />
     <ProjectReference Include="..\MicroService.IModules.Org\MicroService.IModules.Org.csproj" />
+    <ProjectReference Include="..\MicroService.IRespository.Org\MicroService.IRespository.Org.csproj" />
     <ProjectReference Include="..\MicroService.Modules.Org\MicroService.Modules.Org.csproj" />
+    <ProjectReference Include="..\MicroService.Respository.Org\MicroService.Respository.Org.csproj" />
     <ProjectReference Include="..\Surging.Core.Caching\Surging.Core.Caching.csproj" />
     <ProjectReference Include="..\Surging.Core.Codec.MessagePack\Surging.Core.Codec.MessagePack.csproj" />
     <ProjectReference Include="..\Surging.Core.Codec.ProtoBuffer\Surging.Core.Codec.ProtoBuffer.csproj" />
@@ -36,6 +42,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appsettings.debug.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.release.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="cacheSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

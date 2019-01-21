@@ -12,4 +12,8 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Surging.Core.CPlatform\Surging.Core.CPlatform.csproj" />
+  </ItemGroup>
+
 </Project>
