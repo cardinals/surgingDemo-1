@@ -15,6 +15,7 @@ namespace MicroService.Entity.Org.Configuration
             b.ToTable("Roles");
             b.HasKey(p => p.Id);
             b.Property(p => p.Name).IsRequired().HasMaxLength(64);
+            b.Property(p => p.Level).IsRequired();
             b.Property(p => p.IsDelete);
             b.Property(p => p.CreateDate);
         }

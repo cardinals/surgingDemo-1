@@ -267,6 +267,18 @@ namespace MicroService.EntityFramwork
             await updateAction(entity);
             return entity;
         }
+
+       public async Task<bool> UpdateAsync(TPrimaryKey[] ids, Func<TEntity, Task> updateAction)
+        {
+            for(var i = 0; i < ids.Length; i++)
+            {
+                var entity = await GetAsync(ids[i]);
+                await updateAction(entity);
+            }
+           
+            return await Task.FromResult(true);
+
+        }
         #endregion
 
         #region Delete

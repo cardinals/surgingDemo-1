@@ -12,13 +12,14 @@ namespace MicroService.IApplication.Order
     
     public interface IOrderAppService : IDependency
     {
-        Task<JsonResponse> Create(PersonRequestDto personRequestDto);
+        Task<JsonResponse> Create(OrderInfoRequestDto personRequestDto);
 
-        Task<string> InsertAndGetId(PersonRequestDto personRequestDto);
+        Task<string> InsertAndGetId(OrderInfoRequestDto personRequestDto);
 
-        Task<IEnumerable<PersonQueryDto>> GetAll();
+        Task<IEnumerable<OrderInfoQueryDto>> GetAll();
 
+        Task<JsonResponse> Modify(OrderInfoRequestDto personRequestDto);
 
-        Task<int> Modify(PersonRequestDto personRequestDto);
+        Task<JsonResponse> Remove(params string[] ids);
     }
 }

@@ -12,11 +12,11 @@ namespace MicroService.IModules.Order
     [ServiceBundle("api/{Service}")]
     public interface IOrderService: IServiceKey
     {
-        Task<string> Say();
+        Task<string> Say(OrderInfoQueryDto orderInfoQueryDto);
 
-        Task<JsonResponse> Add(PersonRequestDto personRequestDto);
-        Task<string> AddAndGetId(PersonRequestDto personRequestDto);
+        Task<JsonResponse> Add(OrderInfoRequestDto personRequestDto);
+        Task<string> AddAndGetId(OrderInfoRequestDto personRequestDto);
 
-        Task<IEnumerable<PersonQueryDto>> GetAll();
+        Task<IEnumerable<OrderInfoQueryDto>> GetAll();
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MicroService.IRespository.Order
 {
-    public interface IPersonRespository : IRespositoryBase<MicroService.Entity.Order.Person>, IDependency
+   public interface IOrderDetailRespository: IRespositoryBase<MicroService.Entity.Order.OrderDetail>, IDependency
     {
 
     }

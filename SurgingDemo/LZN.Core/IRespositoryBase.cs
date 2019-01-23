@@ -206,6 +206,8 @@ namespace MicroService.Core
         /// <returns>Updated entity</returns>
         Task<TEntity> UpdateAsync(TPrimaryKey id, Func<TEntity, Task> updateAction);
 
+        Task<bool> UpdateAsync(TPrimaryKey [] ids, Func<TEntity, Task> updateAction);
+
         #endregion
 
         #region Delete

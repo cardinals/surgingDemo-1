@@ -20,21 +20,21 @@ namespace MicroService.Modules.Order
         {
             _orderAppService = orderAppService;
         }
-       public async Task<string> Say()
+       public async Task<string> Say(OrderInfoQueryDto orderInfoQueryDto)
         {
-            return await Task.FromResult("hello world");
+            return await Task.FromResult("hello world"+ orderInfoQueryDto.OrderNumber);
         }
-        public async Task<JsonResponse> Add(PersonRequestDto personRequestDto)
+        public async Task<JsonResponse> Add(OrderInfoRequestDto personRequestDto)
         {
            return await _orderAppService.Create(personRequestDto);
         }
 
-       public async Task<string> AddAndGetId(PersonRequestDto personRequestDto)
+       public async Task<string> AddAndGetId(OrderInfoRequestDto personRequestDto)
         {
            return await _orderAppService.InsertAndGetId(personRequestDto);
         }
 
-        public async Task<IEnumerable<PersonQueryDto>> GetAll()
+        public async Task<IEnumerable<OrderInfoQueryDto>> GetAll()
         {
             return await _orderAppService.GetAll();
         }

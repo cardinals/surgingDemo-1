@@ -123,17 +123,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.IModules.Org",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrgDomain", "OrgDomain", "{679F68FC-08B7-4409-910B-4759E4F01C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Entity.Org", "MicroService.Entity.Org\MicroService.Entity.Org.csproj", "{ABE6A67C-397A-4059-8EAD-01D425D60E0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Entity.Org", "MicroService.Entity.Org\MicroService.Entity.Org.csproj", "{ABE6A67C-397A-4059-8EAD-01D425D60E0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.IRespository.Org", "MicroService.IRespository.Org\MicroService.IRespository.Org.csproj", "{0F7C6023-B032-411A-A658-9AD65EE5054F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.IRespository.Org", "MicroService.IRespository.Org\MicroService.IRespository.Org.csproj", "{0F7C6023-B032-411A-A658-9AD65EE5054F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Respository.Org", "MicroService.Respository.Org\MicroService.Respository.Org.csproj", "{BCC616BB-D3C9-4673-A897-E25BE42E95D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Respository.Org", "MicroService.Respository.Org\MicroService.Respository.Org.csproj", "{BCC616BB-D3C9-4673-A897-E25BE42E95D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrgApplication", "OrgApplication", "{52E1F311-B274-4D3C-A797-0BDF352B09BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.Application.Org", "MicroService.Application.Org\MicroService.Application.Org.csproj", "{0A738714-B630-4389-8806-2879DC78949A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.Application.Org", "MicroService.Application.Org\MicroService.Application.Org.csproj", "{0A738714-B630-4389-8806-2879DC78949A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.IApplication.Org", "MicroService.IApplication.Org\MicroService.IApplication.Org.csproj", "{8108A203-A77E-4A51-9299-544FDCC89467}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.IApplication.Org", "MicroService.IApplication.Org\MicroService.IApplication.Org.csproj", "{8108A203-A77E-4A51-9299-544FDCC89467}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

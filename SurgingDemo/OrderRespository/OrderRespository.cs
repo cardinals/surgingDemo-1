@@ -6,13 +6,13 @@ using System.Text;
 
 namespace MicroService.Respository.Order
 {
-    public class PersonRespository : RespositoryBase<MicroService.Entity.Order.Person>, IPersonRespository
+    public class OrderRespository : RespositoryBase<MicroService.Entity.Order.OrderInfo>, IOrderRespository
     {
 
 
 
 
-        public PersonRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
+        public OrderRespository(IUnitOfWorkDbContext dbDbContext) : base(dbDbContext)
         {
 
         }

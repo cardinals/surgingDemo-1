@@ -7,9 +7,9 @@ using System.Text;
 
 namespace MicroService.Application.Order.Validators
 {
-  public  class PersonValidator: AbstractValidator<Person>
+  public  class OrderInfoValidator : AbstractValidator<OrderInfo>
     {
-        public PersonValidator()
+        public OrderInfoValidator()
         {
             RuleSet(ValidatorTypeConstants.Create, () =>
             {
@@ -25,7 +25,7 @@ namespace MicroService.Application.Order.Validators
         void BaseValidator()
         {
             RuleFor(per => per.Id).NotEmpty().WithMessage("Id不能为空");
-            RuleFor(per => per.RoleId).NotEmpty().WithMessage("RoleId不能为空");
+            RuleFor(per => per.OrderNumber).NotEmpty().WithMessage("RoleId不能为空");
 
         }
     }

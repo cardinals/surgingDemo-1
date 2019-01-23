@@ -13,4 +13,8 @@
     <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\OrderDetail\" />
+  </ItemGroup>
+
 </Project>

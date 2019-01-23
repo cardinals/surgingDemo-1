@@ -14,7 +14,7 @@ namespace MicroService.IModules.Org
     public interface IOrgService: IServiceKey
     {
 
-        int Number(int x, int y);
+        Task<string> Number(int x, int y);
 
         [Authorization(AuthType = AuthorizationType.JWT)]
         Task<JsonResponse> Add(UserRequestDto userRequestDto);

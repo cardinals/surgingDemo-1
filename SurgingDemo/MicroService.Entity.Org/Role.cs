@@ -12,5 +12,10 @@ namespace MicroService.Entity.Org
         [Required]
         [StringLength(64)]
         public string Name { set; get; }
+
+        /// <summary>
+        /// 等级
+        /// </summary>
+        public int Level { set; get; }
     }
 }

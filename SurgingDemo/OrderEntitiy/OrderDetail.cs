@@ -4,22 +4,24 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MicroService.Entity.Product
+namespace MicroService.Entity.Order
 {
-   public class Goods: Entity<string>
+    public class OrderDetail : Entity<string>
     {
+        /// <summary>
+        /// 订单id
+        /// </summary>
+        
+        [Required]
+        [StringLength(36)]
+        public string OrderId { set; get; }
+
         /// <summary>
         /// 商品名称
         /// </summary>
         [Required]
-        [StringLength(128)]
-        public string Name { set; get; }
-
-        /// <summary>
-        /// 库存
-        /// </summary>
-        [Required]
-        public int StockNum { set; get; }
+        [StringLength(36)]
+        public string  GoodsId { set; get; }
 
         /// <summary>
         /// 单价
@@ -28,15 +30,15 @@ namespace MicroService.Entity.Product
         public decimal Price { set; get; }
 
         /// <summary>
-        /// 封面图
-        /// </summary>
-        [Required,StringLength(256)]
-        public string CoverImgSrc { set; get; }
-
-        /// <summary>
-        /// 详情
+        /// 数量
         /// </summary>
         [Required]
-        public string Details { get; set; }
+        public int Count { set; get; }
+
+        /// <summary>
+        /// 小计
+        /// </summary>
+        [Required]
+        public decimal Money { set; get; }
     }
 }

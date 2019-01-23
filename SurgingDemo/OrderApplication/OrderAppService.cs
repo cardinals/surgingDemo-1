@@ -19,46 +19,46 @@ namespace MicroService.Application.Order
   
     public class OrderAppService : ApplicationEnginee, IOrderAppService
     {
-        public IPersonRespository _personRespository;
+        public IOrderRespository _orderRespository;
         private readonly IMapper _mapper;
         public IUnitOfWork _unitOfWork;
 
-        public OrderAppService(IPersonRespository personRespository, IUnitOfWork unitOfWork,
+        public OrderAppService(IOrderRespository orderRespository, IUnitOfWork unitOfWork,
           IMapper mapper)
         {
-            _personRespository = personRespository;
+            _orderRespository = orderRespository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        private async Task DoValidationAsync(Person person, string validatorType)
+        private async Task DoValidationAsync(OrderInfo orderInfo, string validatorType)
         {
-            var personValidator = new PersonValidator();
-            var validatorReresult = await personValidator.DoValidateAsync(person, validatorType);
+            var orderInfoValidator = new OrderInfoValidator();
+            var validatorReresult = await orderInfoValidator.DoValidateAsync(orderInfo, validatorType);
             if (!validatorReresult.IsValid)
             {
                 throw new DomainException(validatorReresult);
             }
         }
-        public async Task<JsonResponse> Create(PersonRequestDto personRequestDto)
+        public async Task<JsonResponse> Create(OrderInfoRequestDto personRequestDto)
         {
             personRequestDto.Id = Guid.NewGuid().ToString();
             var resJson = await TryTransactionAsync(async () =>
               {
-                  var person = _mapper.Map<PersonRequestDto, Person>(personRequestDto);
-                  await DoValidationAsync(person, ValidatorTypeConstants.Create);
-                  await _personRespository.InsertAsync(person);
+                  var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+                  await DoValidationAsync(orderInfo, ValidatorTypeConstants.Create);
+                  await _orderRespository.InsertAsync(orderInfo);
 
                   await _unitOfWork.SaveChangesAsync();
               });
             return resJson;
         }
-        public async Task<string> InsertAndGetId(PersonRequestDto personRequestDto)
+        public async Task<string> InsertAndGetId(OrderInfoRequestDto personRequestDto)
         {
             personRequestDto.Id = Guid.NewGuid().ToString();
-            var person = _mapper.Map<PersonRequestDto, Person>(personRequestDto);
-            await _personRespository.InsertAsync(person);
-            var res= await _personRespository.InsertAndGetIdAsync(person);
+            var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+            await _orderRespository.InsertAsync(orderInfo);
+            var res= await _orderRespository.InsertAndGetIdAsync(orderInfo);
             await _unitOfWork.SaveChangesAsync();
             return res;
         }
@@ -67,18 +67,43 @@ namespace MicroService.Application.Order
             return await Task.FromResult<int>(a + 1);
         }
 
-        public async Task<IEnumerable<PersonQueryDto>> GetAll()
+        public async Task<IEnumerable<OrderInfoQueryDto>> GetAll()
         {
-            var list = await _personRespository.GetAll().ToListAsync();
+            var list = await _orderRespository.GetAll().ToListAsync();
 
-            return list.MapToList<Person, PersonQueryDto>();
+            return list.MapToList<OrderInfo, OrderInfoQueryDto>();
 
         }
 
-        public async Task<int> Modify(PersonRequestDto personRequestDto)
+        public async Task<JsonResponse> Modify(OrderInfoRequestDto personRequestDto)
         {
-            return await Task.FromResult<int>(121);
+            var person = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+            var resJson = await TryTransactionAsync(async () =>
+            {
+                var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+                await DoValidationAsync(orderInfo, ValidatorTypeConstants.Create);
+                await _orderRespository.UpdateAsync(orderInfo);
+                await _unitOfWork.SaveChangesAsync();
+            });
+            return resJson;
         }
 
+        public async Task<JsonResponse> Remove(params string[] ids)
+        {
+            var resJson = await TryTransactionAsync(async () =>
+            {
+                await _orderRespository.UpdateAsync(ids,  async (e)=> {
+
+                    await Task.Run(() =>
+                   {
+                       e.IsDelete = -1;
+                   });
+                });
+                await _unitOfWork.SaveChangesAsync();
+            });
+           return resJson;
+        }
+
+        
     }
 }
