@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using Surging.Core.CPlatform.Filters.Implementation;
 using Surging.Core.CPlatform.Utilities;
 using Newtonsoft.Json;
+using Surging.Core.KestrelHttpServer.Internal;
+using System.IO;
+using Surging.Core.KestrelHttpServer;
 
 namespace MicroService.Modules.Org
 {
@@ -28,6 +31,37 @@ namespace MicroService.Modules.Org
             return await _userAppService.Create(userRequestDto);
         }
 
+        public async Task<bool> UploadFile(HttpFormCollection form)
+        {
+            var files = form.Files;
+            foreach (var file in files)
+            {
+                using (var stream = new FileStream(Path.Combine(AppContext.BaseDirectory, file.FileName), FileMode.OpenOrCreate))
+                {
+                    await stream.WriteAsync(file.File, 0, (int)file.Length);
+                }
+            }
+            return true;
+        }
+
+        public async Task<IActionResult> DownFile(string fileName, string contentType)
+        {
+            string uploadPath = Path.Combine(AppContext.BaseDirectory, fileName);
+            if (File.Exists(uploadPath))
+            {
+                using (var stream = new FileStream(uploadPath, FileMode.Open))
+                {
+                    var bytes = new Byte[stream.Length];
+                    await stream.ReadAsync(bytes, 0, bytes.Length);
+                    stream.Dispose();
+                    return new FileContentResult(bytes, contentType, fileName);
+                }
+            }
+            else
+            {
+                throw new FileNotFoundException(fileName);
+            }
+        }
         public async Task<string> Number(int x, int y)
         {
             var serviceProxyProvider = ServiceLocator.GetService<IServiceProxyProvider>();

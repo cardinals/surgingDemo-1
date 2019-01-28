@@ -111,7 +111,10 @@ namespace MicroService.EntityFramwork
 
             return query;
         }
-
+       public IQueryable<TEntity> Entities(Expression<Func<TEntity, bool>> expression)
+        {
+          return  _dbSet.AsQueryable().Where(expression);
+        }
         public List<TEntity> GetAllList()
         {
             return GetAll().ToList();

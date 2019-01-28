@@ -14,6 +14,8 @@ using MicroService.Core.Data;
 using MicroService.Data.Validation;
 using MicroService.Application.Org.Validators;
 using MicroService.Data.Extensions;
+using MicroService.Core;
+using MicroService.Data.Common;
 
 namespace MicroService.Application.Order
 {
@@ -81,7 +83,7 @@ namespace MicroService.Application.Order
             return await Task.FromResult<int>(121);
         }
 
-        public async Task<UserQueryDto> Login(UserRequestDto userRequestDto)
+        public async Task<LoginUser> Login(UserRequestDto userRequestDto)
         {
           var result=  await _userRespository.GetAllListAsync(u => u.Name == userRequestDto.Name &&
              u.Password == userRequestDto.Password);
@@ -89,9 +91,9 @@ namespace MicroService.Application.Order
 
             if (user == null)
             {
-                return await Task.FromResult<UserQueryDto>(null);
+                return await Task.FromResult<LoginUser>(null);
             }
-            return await Task.FromResult(new UserQueryDto() { Id=user.Id, Name=user.Name, RoleId=user.RoleId,
+            return await Task.FromResult(new LoginUser() { Id=user.Id, UserId=user.Id, Name=user.Name, RoleId=user.RoleId,
              PhoneCode=user.PhoneCode});
 
         }

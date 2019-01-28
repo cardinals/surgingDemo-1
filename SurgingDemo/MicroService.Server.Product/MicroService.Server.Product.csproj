@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\MicroService.Application.Product\MicroService.Application.Product.csproj" />
+    <ProjectReference Include="..\MicroService.Data\MicroService.Data.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\MicroService.IModules.Product\MicroService.IModules.Product.csproj" />
     <ProjectReference Include="..\MicroService.Modules.Product\MicroService.Modules.Product.csproj" />
     <ProjectReference Include="..\MicroService.Respository.Product\MicroService.Respository.Product.csproj" />

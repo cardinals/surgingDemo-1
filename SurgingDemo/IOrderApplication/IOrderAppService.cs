@@ -1,5 +1,6 @@
 ﻿
 using MicroService.Data;
+using MicroService.Data.Common;
 using MicroService.Data.Validation;
 using MicroService.IApplication.Order.Dto;
 using System;
@@ -12,14 +13,16 @@ namespace MicroService.IApplication.Order
     
     public interface IOrderAppService : IDependency
     {
-        Task<JsonResponse> Create(OrderInfoRequestDto personRequestDto);
+        Task<JsonResponse> CreateAsync(OrderInfoRequestDto orderInfoRequestDto);
 
-        Task<string> InsertAndGetId(OrderInfoRequestDto personRequestDto);
+        Task<JsonResponse> BatchCreateAsync(IList<OrderInfoRequestDto> orderInfoRequestDtos);
+     
+        Task<IEnumerable<OrderInfoQueryDto>> GetPageListAsync(OrderInfoPageRequestDto orderInfoPageRequestDto);
 
-        Task<IEnumerable<OrderInfoQueryDto>> GetAll();
+        Task<OrderInfoQueryDto> GetForModifyAsync(EntityQueryRequest entityQueryRequest);
 
-        Task<JsonResponse> Modify(OrderInfoRequestDto personRequestDto);
+        Task<JsonResponse> ModifyAsync(OrderInfoRequestDto orderInfoRequestDto);
 
-        Task<JsonResponse> Remove(params string[] ids);
+        Task<JsonResponse> RemoveAsync(params string[] ids);
     }
 }

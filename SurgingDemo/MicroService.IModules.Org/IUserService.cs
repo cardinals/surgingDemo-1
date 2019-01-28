@@ -1,4 +1,5 @@
-﻿using MicroService.IApplication.Org.Dto;
+﻿using MicroService.Data.Common;
+using MicroService.IApplication.Org.Dto;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using System;
@@ -11,7 +12,7 @@ namespace MicroService.IModules.Org
     [ServiceBundle("api/{Service}")]
     public interface IUserService : IServiceKey
     {
-        Task<UserQueryDto> Authentication(UserRequestDto userRequestDto);
+        Task<LoginUser> Authentication(UserRequestDto userRequestDto);
 
     }
     

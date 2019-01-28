@@ -37,6 +37,7 @@ namespace MicroService.Core
         /// <returns>IQueryable to be used to select entities from database</returns>
         IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] propertySelectors);
 
+        IQueryable<TEntity> Entities(Expression<Func<TEntity, bool>> expression);
         /// <summary>
         /// Used to get all entities.
         /// </summary>

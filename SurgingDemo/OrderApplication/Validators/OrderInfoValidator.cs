@@ -25,7 +25,8 @@ namespace MicroService.Application.Order.Validators
         void BaseValidator()
         {
             RuleFor(per => per.Id).NotEmpty().WithMessage("Id不能为空");
-            RuleFor(per => per.OrderNumber).NotEmpty().WithMessage("RoleId不能为空");
+            RuleFor(per => per.OrderNumber).NotEmpty().WithMessage("单号不能为空");
+            RuleFor(per => per.TotalMoney).NotEmpty().WithMessage("金额不能为空");
 
         }
     }

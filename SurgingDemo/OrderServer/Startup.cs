@@ -7,6 +7,8 @@ using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 using AutoMapper;
+using MicroService.Data.Mapping;
+
 namespace MicroService.Server.Order
 {
     public class Startup
@@ -36,7 +38,7 @@ namespace MicroService.Server.Order
 
         public void Configure(IContainer app)
         {
-   
+           // Mappings.RegisterMappings();
         }
 
         #region 私有方法

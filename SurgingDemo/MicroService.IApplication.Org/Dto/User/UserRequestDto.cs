@@ -1,5 +1,6 @@
 ﻿
 using MicroService.Core;
+using MicroService.Data.Common;
 using ProtoBuf;
 using System;
 using System.Collections.Generic;

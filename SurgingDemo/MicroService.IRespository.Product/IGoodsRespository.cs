@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MicroService.IRespository.Product
 {
-    public interface IGoodsRespository : IRespositoryBase<MicroService.Entity.Product.Goods>, IDependency
+    public interface IGoodsRespository : IRespositoryBase<Entity.Product.Goods>, IDependency
     {
 
     }

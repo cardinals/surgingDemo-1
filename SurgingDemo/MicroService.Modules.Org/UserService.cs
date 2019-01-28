@@ -1,4 +1,5 @@
-﻿using MicroService.IApplication.Org;
+﻿using MicroService.Data.Common;
+using MicroService.IApplication.Org;
 using MicroService.IApplication.Org.Dto;
 using MicroService.IModules.Org;
 using Surging.Core.CPlatform.Ioc;
@@ -19,7 +20,7 @@ namespace MicroService.Modules.Org
             _userAppService = userAppService;
         }
 
-        public async Task<UserQueryDto> Authentication(UserRequestDto userRequestDto)
+        public async Task<LoginUser> Authentication(UserRequestDto userRequestDto)
         {
             return await _userAppService.Login(userRequestDto);
         }

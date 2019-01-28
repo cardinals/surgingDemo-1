@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IModules.Order\MicroService.IModules.Order.csproj" />
-    <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\Modules.Order\MicroService.Modules.Order.csproj" />
     <ProjectReference Include="..\OrderApplication\MicroService.Application.Order.csproj" />
     <ProjectReference Include="..\OrderRespository\MicroService.Respository.Order.csproj" />

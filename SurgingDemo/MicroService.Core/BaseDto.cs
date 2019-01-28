@@ -5,25 +5,13 @@ using System.Text;
 
 namespace MicroService.Core
 {
-    public class BaseDto : RequestData
+    public class BaseDto:RequestData
     {
-
-
-     
-
         public string Id { set; get; }
 
         public int IsDelete { set; get; }
 
-        public DateTime CreateDate { set; get; }
-
-        public byte[] Timestamp { set; get; }
-
-      
-        
-
-
-     
+        public DateTime CreateDate { set; get; } = DateTime.Now;
 
     }
 }

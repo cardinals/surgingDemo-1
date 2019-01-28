@@ -1,5 +1,6 @@
 ﻿
 using MicroService.Data;
+using MicroService.Data.Common;
 using MicroService.Data.Validation;
 using MicroService.IApplication.Org.Dto;
 using System;
@@ -16,7 +17,7 @@ namespace MicroService.IApplication.Org
 
         Task<string> InsertAndGetId(UserRequestDto personRequestDto);
 
-        Task<UserQueryDto> Login(UserRequestDto userRequestDto);
+        Task<LoginUser> Login(UserRequestDto userRequestDto);
 
         Task<IEnumerable<UserQueryDto>> GetAll();
 

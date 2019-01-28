@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LZN.Core\MicroService.Core.csproj" />
-    <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
-    <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\MicroService.Core\MicroService.Core.csproj" />
     <ProjectReference Include="..\MicroService.Entity.Product\MicroService.Entity.Product.csproj" />
     <ProjectReference Include="..\MicroService.IApplication.Product\MicroService.IApplication.Product.csproj" />
     <ProjectReference Include="..\MicroService.IRespository.Product\MicroService.IRespository.Product.csproj" />

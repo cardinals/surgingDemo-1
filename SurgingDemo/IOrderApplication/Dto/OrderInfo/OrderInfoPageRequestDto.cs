@@ -11,7 +11,7 @@ namespace MicroService.IApplication.Order.Dto
 {
     [ProtoContract]
     [Serializable]
-    public class OrderInfoRequestDto : LoginUser
+    public class OrderInfoPageRequestDto : PageData
     {
 
         /// <summary>
@@ -27,9 +27,11 @@ namespace MicroService.IApplication.Order.Dto
 
         public decimal TotalMoney { set; get; }
 
-      
+        /// <summary>
+        /// 下单用户
+        /// </summary>
 
-       // public string UserId { set; get; }
+        public string UserId { set; get; }
 
         /// <summary>
         /// 订单状态

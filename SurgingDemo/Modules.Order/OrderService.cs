@@ -1,4 +1,6 @@
 ﻿
+using MicroService.Data.Common;
+using MicroService.Data.Extensions;
 using MicroService.Data.Validation;
 using MicroService.IApplication.Order;
 using MicroService.IApplication.Order.Dto;
@@ -20,23 +22,35 @@ namespace MicroService.Modules.Order
         {
             _orderAppService = orderAppService;
         }
-       public async Task<string> Say(OrderInfoQueryDto orderInfoQueryDto)
+        public async Task<JsonResponse> Create(OrderInfoRequestDto orderInfoRequestDto)
         {
-            return await Task.FromResult("hello world"+ orderInfoQueryDto.OrderNumber);
+            orderInfoRequestDto.ToLoginUser();
+            return await _orderAppService.CreateAsync(orderInfoRequestDto);
         }
-        public async Task<JsonResponse> Add(OrderInfoRequestDto personRequestDto)
+        public async Task<JsonResponse> BatchCreate(IList<OrderInfoRequestDto> orderInfoRequestDtos)
         {
-           return await _orderAppService.Create(personRequestDto);
-        }
-
-       public async Task<string> AddAndGetId(OrderInfoRequestDto personRequestDto)
-        {
-           return await _orderAppService.InsertAndGetId(personRequestDto);
+            return await _orderAppService.BatchCreateAsync(orderInfoRequestDtos);
         }
 
-        public async Task<IEnumerable<OrderInfoQueryDto>> GetAll()
+
+        public async Task<OrderInfoQueryDto> GetForModify(EntityQueryRequest entityQueryRequest)
         {
-            return await _orderAppService.GetAll();
+            return await _orderAppService.GetForModifyAsync(entityQueryRequest);
+        }
+
+        public async Task<IEnumerable<OrderInfoQueryDto>> GetPageList(OrderInfoPageRequestDto orderInfoPageRequestDto)
+        {
+            return await _orderAppService.GetPageListAsync(orderInfoPageRequestDto);
+        }
+
+        public async Task<JsonResponse> Modify(OrderInfoRequestDto orderInfoRequestDto)
+        {
+            return await _orderAppService.ModifyAsync(orderInfoRequestDto);
+        }
+
+        public async Task<JsonResponse> Remove(params string[] ids)
+        {
+            return await _orderAppService.RemoveAsync(ids);
         }
     }
 }

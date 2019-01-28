@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
+    <ProjectReference Include="..\MicroService.Data\MicroService.Data.csproj" />
     <ProjectReference Include="..\MicroService.IApplication.Product\MicroService.IApplication.Product.csproj" />
     <ProjectReference Include="..\Surging.Core.CPlatform\Surging.Core.CPlatform.csproj" />
     <ProjectReference Include="..\Surging.Core.KestrelHttpServer\Surging.Core.KestrelHttpServer.csproj" />

@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IOrderApplication\MicroService.IApplication.Order.csproj" />
     <ProjectReference Include="..\IOrderRespository\MicroService.IRespository.Order.csproj" />
-    <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
+    <ProjectReference Include="..\MicroService.Core\MicroService.Core.csproj" />
   </ItemGroup>
 
 </Project>

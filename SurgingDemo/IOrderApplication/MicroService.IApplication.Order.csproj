@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LZN.Core\MicroService.Core.csproj" />
-    <ProjectReference Include="..\LZN.Data\MicroService.Data.csproj" />
+    <ProjectReference Include="..\MicroService.Core\MicroService.Core.csproj" />
+    <ProjectReference Include="..\MicroService.Data\MicroService.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

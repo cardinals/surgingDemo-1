@@ -14,6 +14,7 @@ using MicroService.Core.Data;
 using MicroService.Data.Validation;
 using MicroService.Application.Order.Validators;
 using MicroService.Data.Extensions;
+using MicroService.Data.Common;
 namespace MicroService.Application.Order
 {
   
@@ -30,7 +31,9 @@ namespace MicroService.Application.Order
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
+        /// <summary>
+        ///异步验证
+        /// </summary>
         private async Task DoValidationAsync(OrderInfo orderInfo, string validatorType)
         {
             var orderInfoValidator = new OrderInfoValidator();
@@ -40,12 +43,33 @@ namespace MicroService.Application.Order
                 throw new DomainException(validatorReresult);
             }
         }
-        public async Task<JsonResponse> Create(OrderInfoRequestDto personRequestDto)
+
+        /// <summary>
+        ///异步验证
+        /// </summary>
+        private async Task DoValidationAsync(IEnumerable<OrderInfo> orderInfos, string validatorType)
         {
-            personRequestDto.Id = Guid.NewGuid().ToString();
+            var orderInfoValidator = new OrderInfoValidator();
+            var domainException = new DomainException();
+            foreach (var orderInfo in orderInfos)
+            {
+                var validatorReresult = await orderInfoValidator.DoValidateAsync(orderInfo, validatorType);
+                if (!validatorReresult.IsValid)
+                {
+                    domainException.AddErrors(validatorReresult);
+                }
+
+            }
+
+            if (domainException.ValidationErrors.ErrorItems.Any()) throw domainException;
+        }
+        public async Task<JsonResponse> CreateAsync(OrderInfoRequestDto orderInfoRequestDto)
+        {
+            orderInfoRequestDto.Id = Guid.NewGuid().ToString();
+          
             var resJson = await TryTransactionAsync(async () =>
               {
-                  var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+                  var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(orderInfoRequestDto);
                   await DoValidationAsync(orderInfo, ValidatorTypeConstants.Create);
                   await _orderRespository.InsertAsync(orderInfo);
 
@@ -53,34 +77,46 @@ namespace MicroService.Application.Order
               });
             return resJson;
         }
-        public async Task<string> InsertAndGetId(OrderInfoRequestDto personRequestDto)
+
+        public async Task<JsonResponse> BatchCreateAsync(IList<OrderInfoRequestDto> orderInfoRequestDtos)
         {
-            personRequestDto.Id = Guid.NewGuid().ToString();
-            var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
-            await _orderRespository.InsertAsync(orderInfo);
-            var res= await _orderRespository.InsertAndGetIdAsync(orderInfo);
-            await _unitOfWork.SaveChangesAsync();
-            return res;
-        }
-        public async Task<int> Test(int a)
-        {
-            return await Task.FromResult<int>(a + 1);
+            var resJson = await TryTransactionAsync(async () =>
+            {
+                var entities = orderInfoRequestDtos.MapToList<OrderInfoRequestDto, OrderInfo>();
+                await DoValidationAsync(entities, ValidatorTypeConstants.Create);
+                await _orderRespository.BatchInsertAsync(entities);
+
+                await _unitOfWork.SaveChangesAsync();
+            });
+            return resJson;
         }
 
-        public async Task<IEnumerable<OrderInfoQueryDto>> GetAll()
+        public async Task<OrderInfoQueryDto> GetForModifyAsync(EntityQueryRequest entityQueryRequest)
         {
-            var list = await _orderRespository.GetAll().ToListAsync();
+            var entity = await _orderRespository.Entities(e => e.Id == entityQueryRequest.Id).SingleOrDefaultAsync();
+            if (entity != null)
+            {
+                return entity.MapEntity<OrderInfo, OrderInfoQueryDto>();//_mapper.Map<OrderInfo, OrderInfoQueryDto>(entity);
+            }
+            return null;
+        }
+
+
+        public async Task<IEnumerable<OrderInfoQueryDto>> GetPageListAsync( OrderInfoPageRequestDto orderInfoPageRequestDto)
+        {
+            var pageData = new PageData(orderInfoPageRequestDto.PageIndex, orderInfoPageRequestDto.PageSize);
+            var list = await _orderRespository.GetAllIncluding(e=>e.IsDelete==1).ToPaginated(pageData).ToListAsync();
 
             return list.MapToList<OrderInfo, OrderInfoQueryDto>();
 
         }
 
-        public async Task<JsonResponse> Modify(OrderInfoRequestDto personRequestDto)
+        public async Task<JsonResponse> ModifyAsync(OrderInfoRequestDto orderInfoRequestDto)
         {
-            var person = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+           
             var resJson = await TryTransactionAsync(async () =>
             {
-                var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(personRequestDto);
+                var orderInfo = _mapper.Map<OrderInfoRequestDto, OrderInfo>(orderInfoRequestDto);
                 await DoValidationAsync(orderInfo, ValidatorTypeConstants.Create);
                 await _orderRespository.UpdateAsync(orderInfo);
                 await _unitOfWork.SaveChangesAsync();
@@ -88,7 +124,7 @@ namespace MicroService.Application.Order
             return resJson;
         }
 
-        public async Task<JsonResponse> Remove(params string[] ids)
+        public async Task<JsonResponse> RemoveAsync(params string[] ids)
         {
             var resJson = await TryTransactionAsync(async () =>
             {
@@ -104,6 +140,6 @@ namespace MicroService.Application.Order
            return resJson;
         }
 
-        
+     
     }
 }

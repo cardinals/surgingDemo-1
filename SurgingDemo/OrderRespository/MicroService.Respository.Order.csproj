@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IOrderRespository\MicroService.IRespository.Order.csproj" />
-    <ProjectReference Include="..\LZN.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
     <ProjectReference Include="..\OrderEntitiy\MicroService.Entity.Order.csproj" />
   </ItemGroup>
 
