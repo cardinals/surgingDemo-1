@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 namespace MicroService.Core
 {
     public interface IRespositoryBase<TEntity> : IRespositoryBase<TEntity, string>
+
        where TEntity : class
     {
 
     }
 
 
-    public interface IRespositoryBase<TEntity, TPrimaryKey> where TEntity :class
+    public interface IRespositoryBase<TEntity, TPrimaryKey>: IDependency
+        where TEntity :class
     {
 
 

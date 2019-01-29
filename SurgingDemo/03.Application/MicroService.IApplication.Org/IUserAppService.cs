@@ -1,5 +1,5 @@
 ﻿
-using MicroService.Data;
+using MicroService.Core;
 using MicroService.Data.Common;
 using MicroService.Data.Validation;
 using MicroService.IApplication.Org.Dto;

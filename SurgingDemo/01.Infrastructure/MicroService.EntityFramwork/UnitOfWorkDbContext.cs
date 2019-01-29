@@ -1,7 +1,9 @@
 ﻿
 using MicroService.Core;
 using MicroService.Data.Configuration;
+using MicroService.Data.Constant;
 using MicroService.Data.Mapping;
+using MicroService.Data.Utilities;
 using MicroService.EntityFramwork.Initialize;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,57 +42,16 @@ namespace MicroService.EntityFramwork
         {
             base.OnModelCreating(modelBuilder);
             // modelBuilder.AddEntityConfigurationsFromAssembly(GetType().Assembly);
-            var assemblyName = ConfigManager.GetValue<string>("SqlConfig:EntityConfigurationAssembly");
-            modelBuilder.AddEntityConfigurationsFromAssembly(GetAssembly(assemblyName));
+            //var assemblyName = ConfigManager.GetValue<string>("SqlConfig:EntityConfigurationAssembly");
+            //modelBuilder.AddEntityConfigurationsFromAssembly(AssemblyHelper.GetAssembly(assemblyName));
 
-
-            //var assemblies = GetAssembly(Assembly.GetExecutingAssembly().Location);
-
-            //var currentAssemblies = CreateModulesByFilter(assemblies, REPOSITORY);
-         
-            //var typesToRegister = new List<Type>();
-
-            //foreach (var currentAssembly in currentAssemblies)
-            //{
-            //    typesToRegister.AddRange(currentAssembly.GetTypes().Where(q => q.GetInterface(typeof(IEntityTypeConfiguration<>).FullName) != null));
-            //}
-
-            //foreach (var type in typesToRegister)
-
-            //{
-            //    dynamic configurationInstance = Activator.CreateInstance(type);
-
-            //    modelBuilder.ApplyConfiguration(configurationInstance);
-
-            //}
+            var assemblies = AssemblyHelper.GetAssemblyList(Assembly.GetExecutingAssembly().Location);
+            var currentAssemblies = AssemblyHelper.CreateModulesByFilter(assemblies, ConstantHelper.REPOSITORY);
+            modelBuilder.AddEntityConfigurationsFromAssembly(currentAssemblies[0]);
 
         }
-        public const string REPOSITORY = @"^MicroServer\.(.*\.)?Entitiy";
-        public static List<Assembly> CreateModulesByFilter(List<Assembly> assemblies, string filter)
-        {
-            List<Assembly> modules = new List<Assembly>();
-            modules.AddRange(
-                assemblies.Where(item => Regex.IsMatch(Path.GetFileNameWithoutExtension(item.CodeBase), filter)));
-            return modules;
-        }
-        //public static List<Assembly> GetAssembly(string path)
-        //{
-        //    //dynamic type = (new Program()).GetType();
-        //    string currentDirectory = Path.GetDirectoryName(path);
-        //    var files = Directory.GetFiles(currentDirectory, "*.dll");
-        //    var assemblys = new List<Assembly>();
+      
 
-        //    foreach (var file in files)
-        //    {
-        //        assemblys.Add(Assembly.LoadFrom(file));
-        //    }
-
-        //    return assemblys;
-        //}
-        public static Assembly GetAssembly(string assemblyName)
-        {
-            var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(AppContext.BaseDirectory + $"{assemblyName}.dll");
-            return assembly;
-        }
+      
     }
 }
