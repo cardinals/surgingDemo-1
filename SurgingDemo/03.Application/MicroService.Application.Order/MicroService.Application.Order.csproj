@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.Core\MicroService.Core.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Order\MicroService.IRespository.Order.csproj" />
+    <ProjectReference Include="..\MicroService.IApplication.Order\MicroService.IApplication.Order.csproj" />
+  </ItemGroup>
+
+</Project>
