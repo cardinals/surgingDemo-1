@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MicroService.EntityFramwork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
@@ -8,6 +7,8 @@ using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 using AutoMapper;
 using MicroService.Data.Mapping;
+using MicroService.EntityFramwork.Mysql;
+using MicroService.EntityFramwork;
 
 namespace MicroService.Server.Order
 {
@@ -22,15 +23,15 @@ namespace MicroService.Server.Order
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-            services.AddDbContext<UnitOfWorkDbContext>(opt =>
+            services.AddDbContext<MySqlDbContext>(opt =>
             {
 
             });
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, UnitOfWorkDbContext>();
+            services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
-            //新模块组件注册
+            //依赖注入
             builder.RegisterModule<DefaultModuleRegister>();
             ServiceLocator.Current = builder.Build();
             return ServiceLocator.Current;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -136,6 +137,12 @@ namespace MicroService.Core
         /// <param name="id">Primary key of the entity to load</param>
         /// <returns>Entity</returns>
         TEntity Load(TPrimaryKey id);
+
+        Task<IEnumerable<TEntity>> SqlQuery(string sql, bool trackEnabled = true, params object[] parameters);
+
+        Task<DataSet> SqlQueryDataSet(string sql, bool trackEnabled = true, params object[] parameters);
+
+        Task<int> ExecuteSqlCommand(string sql, params object[] parameters);
 
         #endregion
 
@@ -319,5 +326,9 @@ namespace MicroService.Core
         Task<long> LongCountAsync(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
+
+
+      
+        
     }
 }

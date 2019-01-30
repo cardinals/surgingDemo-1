@@ -21,22 +21,21 @@ namespace MicroService.EntityFramwork
     {
 
 
+        public UnitOfWorkDbContext()
+        {
+
+        }
         //public DbSet<LZN.Core.Model.Person> People { get; set; }
 
 
-       
-        public UnitOfWorkDbContext(DbContextOptions<UnitOfWorkDbContext> dbContextOptions):base(dbContextOptions)
+
+        public UnitOfWorkDbContext(DbContextOptions<DbContext> dbContextOptions):base(dbContextOptions)
         {
 
             //dbContextOptions.
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
-            optionsBuilder.UseMySQL(connectionString);
-          
-        }
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,8 +49,9 @@ namespace MicroService.EntityFramwork
             modelBuilder.AddEntityConfigurationsFromAssembly(currentAssemblies[0]);
 
         }
-      
 
-      
+     //   public abstract void UseDataBase(DbContextOptionsBuilder optionsBuilder, string connectionString);
+
+
     }
 }

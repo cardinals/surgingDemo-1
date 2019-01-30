@@ -15,6 +15,8 @@ using MicroService.Data.Validation;
 using MicroService.Application.Order.Validators;
 using MicroService.Data.Extensions;
 using MicroService.Data.Common;
+using System.Data;
+
 namespace MicroService.Application.Order
 {
   
@@ -140,6 +142,9 @@ namespace MicroService.Application.Order
            return resJson;
         }
 
-     
+        public async Task<DataSet> GetList()
+        {
+            return await _orderRespository.SqlQueryDataSet("select * from OrderInfos");
+        }
     }
 }

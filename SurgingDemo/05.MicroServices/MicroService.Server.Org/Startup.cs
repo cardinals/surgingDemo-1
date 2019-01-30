@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using MicroService.EntityFramwork;
+using MicroService.EntityFramwork.Mysql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.Caching.Configurations;
@@ -25,15 +26,15 @@ namespace MicroService.Server.Org
         {
             var services = new ServiceCollection();
 
-            services.AddDbContext<UnitOfWorkDbContext>(opt =>
+            services.AddDbContext<MySqlDbContext>(opt =>
             {
 
             });
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, UnitOfWorkDbContext>();
+            services.AddScoped<IUnitOfWorkDbContext, MySqlDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
-            //新模块组件注册
+            //依赖注入
             builder.RegisterModule<DefaultModuleRegister>();
 
             ServiceLocator.Current = builder.Build();

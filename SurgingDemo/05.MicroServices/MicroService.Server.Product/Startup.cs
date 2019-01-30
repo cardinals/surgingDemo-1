@@ -7,6 +7,8 @@ using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 using AutoMapper;
+using MicroService.EntityFramwork.SqlServer;
+
 namespace MicroService.Server.Product
 {
     public class Startup
@@ -20,15 +22,15 @@ namespace MicroService.Server.Product
         public IContainer ConfigureServices(ContainerBuilder builder)
         {
             var services = new ServiceCollection();
-            services.AddDbContext<UnitOfWorkDbContext>(opt =>
+            services.AddDbContext<SqlServerDbContext>(opt =>
             {
 
             });
             services.AddAutoMapper();
-            services.AddScoped<IUnitOfWorkDbContext, UnitOfWorkDbContext>();
+            services.AddScoped<IUnitOfWorkDbContext, SqlServerDbContext>();
             ConfigureLogging(services);
             builder.Populate(services);
-            //新模块组件注册
+            //依赖注入
             builder.RegisterModule<DefaultModuleRegister>();
             ServiceLocator.Current = builder.Build();
             return ServiceLocator.Current;

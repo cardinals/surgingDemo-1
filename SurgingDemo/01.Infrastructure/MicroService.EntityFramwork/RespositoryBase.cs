@@ -5,6 +5,7 @@ using MicroService.EntityFramwork.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace MicroService.EntityFramwork
 {
     public abstract class RespositoryBase<TEntity>
-       : RespositoryBase<TEntity, string>, IRespositoryBase<TEntity, string>
+       : RespositoryBase<TEntity, string>, Core.IRespositoryBase<TEntity, string>
        where TEntity : class,IEntity<string>
     {
       
@@ -199,6 +200,27 @@ namespace MicroService.EntityFramwork
             return Get(id);
         }
 
+        public async Task<IEnumerable<TEntity>> SqlQuery(string sql, bool trackEnabled = true, params object[] parameters)
+        {
+
+            return trackEnabled
+                ? await Task.FromResult(_dbSet.FromSql(sql, parameters))
+                : await Task.FromResult(_dbSet.FromSql(sql, parameters).AsNoTracking());
+        }
+
+        public async Task<DataSet> SqlQueryDataSet(string sql, bool trackEnabled = true, params object[] parameters)
+        {
+            _dbContext.Database.
+            return await _dbContext.Set<DataSet>().FromSql(sql, parameters).SingleOrDefaultAsync();
+                //return trackEnabled?
+                // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters)):
+                // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters).AsNoTracking());
+        }
+
+        public async Task<int> ExecuteSqlCommand(string sql, params object[] parameters)
+        {
+            return await _dbContext.Database.ExecuteSqlCommandAsync(sql, parameters);
+        }
         #endregion
 
         #region Insert

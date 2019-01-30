@@ -135,6 +135,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surging.ApiGateway", "06.Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surging.Core.Consul", "00.Surging.Core\Surging.Core.Consul\Surging.Core.Consul.csproj", "{D5C48947-DB13-4F85-BD3A-37C5F3DA7312}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.EntityFramwork.Mysql", "MicroService.EntityFramworkMysql\MicroService.EntityFramwork.Mysql.csproj", "{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.EntityFramwork.SqlServer", "MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj", "{301CD913-FAF6-45EC-8F43-CF7A66EB2D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -341,6 +345,14 @@ Global
 		{D5C48947-DB13-4F85-BD3A-37C5F3DA7312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5C48947-DB13-4F85-BD3A-37C5F3DA7312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5C48947-DB13-4F85-BD3A-37C5F3DA7312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301CD913-FAF6-45EC-8F43-CF7A66EB2D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301CD913-FAF6-45EC-8F43-CF7A66EB2D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301CD913-FAF6-45EC-8F43-CF7A66EB2D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301CD913-FAF6-45EC-8F43-CF7A66EB2D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -405,6 +417,8 @@ Global
 		{EB47E49A-584D-4EBF-821E-4114600F396F} = {0FB5675C-38B9-48A7-B264-F75B360175D4}
 		{4830C5EC-2BA5-40AF-8A1F-55F7339A9CA4} = {40736A18-06E6-4019-873D-6B1959E3AB94}
 		{D5C48947-DB13-4F85-BD3A-37C5F3DA7312} = {42E0C6B0-821B-4D11-8C32-DAD9C3338B9A}
+		{AE975D8F-F2FA-41E8-8C57-06FFD1CB64AB} = {FB63EB18-788F-4F7E-8FDA-2AD1B948D077}
+		{301CD913-FAF6-45EC-8F43-CF7A66EB2D85} = {FB63EB18-788F-4F7E-8FDA-2AD1B948D077}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06DBEFE0-3324-46E0-BEB9-4031978DF3BE}

@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Data;
+
 namespace MicroService.Modules.Order
 {
     [ModuleName("Order")]
@@ -52,6 +54,11 @@ namespace MicroService.Modules.Order
         {
           
             return await _orderAppService.RemoveAsync(entityRequest.Ids.ToArray());
+        }
+
+        public async Task<DataSet> GetList()
+        {
+            return await _orderAppService.GetList();
         }
     }
 }

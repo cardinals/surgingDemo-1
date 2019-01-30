@@ -5,6 +5,7 @@ using MicroService.Data.Validation;
 using MicroService.IApplication.Order.Dto;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,5 +25,8 @@ namespace MicroService.IApplication.Order
         Task<JsonResponse> ModifyAsync(OrderInfoRequestDto orderInfoRequestDto);
 
         Task<JsonResponse> RemoveAsync(params string[] ids);
+
+
+        Task<DataSet> GetList();
     }
 }
