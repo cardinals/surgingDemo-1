@@ -27,6 +27,6 @@ namespace MicroService.IApplication.Order
         Task<JsonResponse> RemoveAsync(params string[] ids);
 
 
-        Task<DataSet> GetList();
+        Task<DataTable> GetList();
     }
 }

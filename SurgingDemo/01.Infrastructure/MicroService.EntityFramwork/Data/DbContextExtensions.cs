@@ -10,44 +10,62 @@ namespace MicroService.EntityFramwork.Data
 {
     public static class DbContextExtensions
     {
-        private static void CombineParams(ref DbCommand command, params object[] parameters)
+        private static void CombineParams(ref DbCommand command, Dictionary<string, object> parameters)
         {
             if (parameters != null)
             {
-                
-                foreach (SqlParameter parameter in parameters)
+                foreach (KeyValuePair<string, object> item in parameters)
                 {
-                    if (!parameter.ParameterName.Contains("@"))
-                        parameter.ParameterName = $"@{parameter.ParameterName}";
+                    DbParameter parameter = command.CreateParameter();
+                    parameter.ParameterName = item.Key;
+                    parameter.Value = item.Value;
                     command.Parameters.Add(parameter);
                 }
+
+                //foreach (DbParameter parameter in parameters)
+                //{
+                //    if (!parameter.ParameterName.Contains("@"))
+                //        parameter.ParameterName = $"@{parameter.ParameterName}";
+                //    command.Parameters.Add(parameter);
+                //}
             }
         }
 
-        private static DbCommand CreateCommand(DatabaseFacade facade, string sql, out DbConnection dbConn, params object[] parameters)
+        private static DbCommand CreateCommand(DatabaseFacade facade, string sql, 
+            out DbConnection dbConn, Dictionary<string, object> parameters)
         {
             DbConnection conn = facade.GetDbConnection();
             dbConn = conn;
-            conn.Open();
-            DbCommand cmd = conn.CreateCommand();
-            //facade.IsSqlServer()
-            if (facade.IsSqlServer())
+            if (conn.State == ConnectionState.Closed)
             {
-                cmd.CommandText = sql;
-                CombineParams(ref cmd, parameters);
+                conn.Open();
             }
+            DbCommand cmd = conn.CreateCommand();
+
+            cmd.CommandText = sql;
+            CombineParams(ref cmd, parameters);
+
             return cmd;
         }
 
-        public static DataTable SqlQuery(this DatabaseFacade facade, string sql, params object[] parameters)
+ 
+    public static DataTable SqlQuery(this DatabaseFacade facade, string sql, Dictionary<string, object> parameters)
         {
             DbCommand cmd = CreateCommand(facade, sql, out DbConnection conn, parameters);
             DbDataReader reader = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            reader.Close();
-            conn.Close();
-            return dt;
+            try
+            {
+              
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+              
+                return dt;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
         }
 
      

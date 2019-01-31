@@ -35,6 +35,6 @@ namespace MicroService.IModules.Order
         Task<JsonResponse> Remove(EntityRequest entityRequest);
 
 
-        Task<DataSet> GetList();
+        Task<DataTable> GetList();
     }
 }

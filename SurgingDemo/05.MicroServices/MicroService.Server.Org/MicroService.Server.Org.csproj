@@ -32,13 +32,13 @@
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\WebSocket\WebSocketCore\WebSocketCore.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.Mysql\MicroService.EntityFramwork.Mysql.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Org\MicroService.IRespository.Org.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Org\MicroService.Respository.Org.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.Application.Org\MicroService.Application.Org.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Org\MicroService.IApplication.Org.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Org\MicroService.IModules.Org.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Org\MicroService.Modules.Org.csproj" />
-    <ProjectReference Include="..\..\MicroService.EntityFramworkMysql\MicroService.EntityFramwork.Mysql.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,6 +11,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using MicroService.Data.Extensions;
+using System.Data;
+using System.Data.Common;
+using System.Reflection.Metadata;
+
 namespace MicroService.Application.Product
 {
     public class GoodsAppService : ApplicationEnginee, IGoodsAppService
@@ -50,6 +54,12 @@ namespace MicroService.Application.Product
             });
             return resJson;
         }
-       
+        public async Task<DataTable> GetList()
+        {
+            var dic = new Dictionary<string, object>() { };
+            dic.Add("@price", 100);
+            return await _personRespository.SqlQueryDataTable("select * from Goods where Price>@price",
+             dic);
+        }
     }
 }

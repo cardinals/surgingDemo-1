@@ -56,7 +56,7 @@ namespace MicroService.Modules.Order
             return await _orderAppService.RemoveAsync(entityRequest.Ids.ToArray());
         }
 
-        public async Task<DataSet> GetList()
+        public async Task<DataTable> GetList()
         {
             return await _orderAppService.GetList();
         }

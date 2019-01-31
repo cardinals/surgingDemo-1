@@ -140,7 +140,7 @@ namespace MicroService.Core
 
         Task<IEnumerable<TEntity>> SqlQuery(string sql, bool trackEnabled = true, params object[] parameters);
 
-        Task<DataSet> SqlQueryDataSet(string sql, bool trackEnabled = true, params object[] parameters);
+        Task<DataTable> SqlQueryDataTable(string sql, Dictionary<string, object> parameters);
 
         Task<int> ExecuteSqlCommand(string sql, params object[] parameters);
 

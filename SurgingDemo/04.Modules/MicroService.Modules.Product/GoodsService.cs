@@ -8,6 +8,7 @@ using MicroService.IApplication.Product;
 using MicroService.IApplication.Product.Dto;
 using MicroService.Data.Validation;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace MicroService.Modules.Product
 {
@@ -23,6 +24,9 @@ namespace MicroService.Modules.Product
         {
             return await _goodsAppService.Create(goodsRequestDto);
         }
-
+        public async Task<DataTable> GetList()
+        {
+            return  await _goodsAppService.GetList();
+        }
     }
 }

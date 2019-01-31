@@ -208,13 +208,17 @@ namespace MicroService.EntityFramwork
                 : await Task.FromResult(_dbSet.FromSql(sql, parameters).AsNoTracking());
         }
 
-        public async Task<DataSet> SqlQueryDataSet(string sql, bool trackEnabled = true, params object[] parameters)
+        public async Task<DataTable> SqlQueryDataTable(string sql,Dictionary<string, object> parameters)
         {
-            _dbContext.Database.
-            return await _dbContext.Set<DataSet>().FromSql(sql, parameters).SingleOrDefaultAsync();
-                //return trackEnabled?
-                // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters)):
-                // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters).AsNoTracking());
+         
+            return await Task.FromResult(_dbContext.Database.SqlQuery(sql, parameters));
+            //  var dbHeler=  new MicroService.SqlHelper.MicroSqlHelper(_dbContext.Database);
+
+            //  return await Task.FromResult(dbHeler.SqlQuery(sql, parameters));
+            //  return await _dbContext.Set<DataSet>().FromSql(sql, parameters).SingleOrDefaultAsync();
+            //return trackEnabled?
+            // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters)):
+            // await Task.FromResult(_dbContext.Set<DataSet>().FromSql(sql, parameters).AsNoTracking());
         }
 
         public async Task<int> ExecuteSqlCommand(string sql, params object[] parameters)

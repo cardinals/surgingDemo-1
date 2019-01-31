@@ -37,13 +37,13 @@
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\WebSocket\WebSocketCore\WebSocketCore.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Product\MicroService.IRespository.Product.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Product\MicroService.Respository.Product.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.Application.Product\MicroService.Application.Product.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Product\MicroService.IApplication.Product.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Product\MicroService.IModules.Product.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Product\MicroService.Modules.Product.csproj" />
-    <ProjectReference Include="..\..\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

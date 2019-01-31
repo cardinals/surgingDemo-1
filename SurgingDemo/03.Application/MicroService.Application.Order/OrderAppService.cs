@@ -16,6 +16,7 @@ using MicroService.Application.Order.Validators;
 using MicroService.Data.Extensions;
 using MicroService.Data.Common;
 using System.Data;
+using System.Data.Common;
 
 namespace MicroService.Application.Order
 {
@@ -142,9 +143,12 @@ namespace MicroService.Application.Order
            return resJson;
         }
 
-        public async Task<DataSet> GetList()
+        public async Task<DataTable> GetList()
         {
-            return await _orderRespository.SqlQueryDataSet("select * from OrderInfos");
+            var dic = new Dictionary<string, object>() { };
+            dic.Add("isdelete", 1);
+            return await _orderRespository.SqlQueryDataTable("select * from OrderInfos where IsDelete=@isdelete",dic
+               );
         }
     }
 }

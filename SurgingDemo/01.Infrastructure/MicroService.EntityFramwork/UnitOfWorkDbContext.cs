@@ -35,7 +35,10 @@ namespace MicroService.EntityFramwork
             //dbContextOptions.
         }
 
-     
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

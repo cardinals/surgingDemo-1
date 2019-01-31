@@ -35,11 +35,11 @@
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\WebSocket\WebSocketCore\WebSocketCore.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.Mysql\MicroService.EntityFramwork.Mysql.csproj" />
     <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Order\MicroService.Respository.Order.csproj" />
     <ProjectReference Include="..\..\03.Application\MicroService.Application.Order\MicroService.Application.Order.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Order\MicroService.IModules.Order.csproj" />
     <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Order\MicroService.Modules.Order.csproj" />
-    <ProjectReference Include="..\..\MicroService.EntityFramworkMysql\MicroService.EntityFramwork.Mysql.csproj" />
   </ItemGroup>
 
   <ItemGroup>
