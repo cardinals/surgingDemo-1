@@ -18,8 +18,8 @@ namespace MicroService.EntityFramwork.SqlServer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
-            optionsBuilder.UseSqlServer(connectionString);
+
+            optionsBuilder.UseSqlServer(base.GetConnetciton());
 
         }
 

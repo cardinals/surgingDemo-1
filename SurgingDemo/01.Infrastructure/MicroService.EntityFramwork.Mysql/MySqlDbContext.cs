@@ -19,8 +19,7 @@ namespace MicroService.EntityFramwork.Mysql
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
-            optionsBuilder.UseMySQL(connectionString);
+            optionsBuilder.UseMySQL(base.GetConnetciton());
 
         }
        

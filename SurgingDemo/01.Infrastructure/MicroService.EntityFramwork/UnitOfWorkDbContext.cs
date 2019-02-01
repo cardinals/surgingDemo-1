@@ -17,7 +17,7 @@ using System.Text.RegularExpressions;
 
 namespace MicroService.EntityFramwork
 {
-  public  class UnitOfWorkDbContext:DbContext, IUnitOfWorkDbContext
+  public   class UnitOfWorkDbContext:DbContext, IUnitOfWorkDbContext
     {
 
 
@@ -40,6 +40,11 @@ namespace MicroService.EntityFramwork
             base.Dispose();
         }
 
+        protected string GetConnetciton()
+        {
+            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
+            return connectionString;
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -19,8 +19,8 @@ namespace MicroService.EntityFramwork.Oracle
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = ConfigManager.GetValue<string>("SqlConfig:connectionString");
-            optionsBuilder.UseOracle(connectionString);
+          
+            optionsBuilder.UseOracle(base.GetConnetciton());
 
         }
     }
