@@ -17,7 +17,8 @@ namespace MicroService.EntityFramwork
           //  IEntityConfigurationTypeFinder typeFinder = GetEntityConfigurationTypeFinder();
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder<TDbContext>();
             builder = UseSql(builder, connString);
-            return (TDbContext)Activator.CreateInstance(typeof(TDbContext), builder.Options);
+            return (TDbContext)Activator.CreateInstance(typeof(TDbContext), new object[] { builder.Options
+            });
         }
         /// <summary>
         /// 重写以获取数据上下文数据库连接字符串

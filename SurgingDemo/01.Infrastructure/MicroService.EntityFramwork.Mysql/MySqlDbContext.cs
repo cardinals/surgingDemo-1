@@ -9,10 +9,6 @@ namespace MicroService.EntityFramwork.Mysql
     public class MySqlDbContext : UnitOfWorkDbContext
     {
 
-        public MySqlDbContext()
-        {
-
-        }
         public MySqlDbContext(DbContextOptions<DbContext> dbContextOptions) : base(dbContextOptions)
         {
         }
