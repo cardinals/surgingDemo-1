@@ -10,6 +10,8 @@ using MicroService.Data.Validation;
 using System.Threading.Tasks;
 using System.Data;
 using MicroService.Data.Common;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicroService.Modules.Product
 {
@@ -32,7 +34,14 @@ namespace MicroService.Modules.Product
 
         public async Task<PageData> GetPageList(GoodsoPageRequestDto goodsoPageRequestDto)
         {
-            return await _goodsAppService.GetPageListAsync(goodsoPageRequestDto);
+             return await _goodsAppService.GetPageListAsync(goodsoPageRequestDto);
+            //PageData pageData = new PageData();
+            //using (TestDbContext db = new TestDbContext())
+            //{
+            //    var data = await db.Goods.Where(g => g.IsDelete == false).ToListAsync();
+            //    pageData.Data = data;
+            //    return pageData;
+            //}
         }
     }
 }

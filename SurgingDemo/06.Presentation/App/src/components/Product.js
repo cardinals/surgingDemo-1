@@ -29,6 +29,7 @@ export default class List extends react.Component {
         return (
             <div>
                 <Row >
+                {/*
                     <Col span={4} >
                         <div className={styles.appItem} onClick={this.props.AddToggle}>
                             <div className={styles.appIcon}
@@ -36,19 +37,14 @@ export default class List extends react.Component {
                             ><Icon type="plus" /></div>
                             <div className={styles.appTitle}>新增应用</div>
                         </div>
-                    </Col>
+                    </Col>*/}
                     {
 
 
                         appList.map(ele =>
                             <Col span={4} >
                                 <div className={styles.appItem}
-                                onMouseEnter={e=>{
-                                  this.props.ItemOver(ele)
-                                }}
-                                onMouseLeave={e=>{
-                                    this.props.ItemOut(ele)
-                                }}
+                               
                                 onClick={
                                     e => {
                                         this.props.GoDetail(ele)
@@ -57,14 +53,10 @@ export default class List extends react.Component {
                                     <div className={styles.appIcon}>
                                         <img src={`${ele.CoverImgSrc}`}></img>
                                     </div>
+                                    <div className={styles.appPrice}>￥{ele.Price}</div>
                                     <div className={styles.appTitle}>{ele.Name}</div>
 
-                                    {
-
-                                        ele.hover&& <Popover content={<Content item={ele} Copy={ this.props.Copy } Remove= { this.props.Remove}  />} placement="bottom" >
-                                        <div onClick={ e=>{ e.stopPropagation(); }}  className={styles.toolIcon}> </div>
-                                        </Popover>
-                                    }
+                                   
                                    
 
                                  

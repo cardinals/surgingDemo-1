@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Http\Surging.Core.Protocol.Http.csproj" />
     <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />

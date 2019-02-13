@@ -41,7 +41,9 @@ namespace MicroService.EntityFramwork
         {
 
             _dbContext = (UnitOfWorkDbContext)dbContext;
+            //_dbContext.ChangeTracker
             _dbSet = _dbContext.Set<TEntity>();
+          //  _dbContext.Entry<TEntity>(entity).State = EntityState.Detached;
 
         }
         public DbContext GetDbContext()
@@ -106,7 +108,7 @@ namespace MicroService.EntityFramwork
             {
                 foreach (var propertySelector in propertySelectors)
                 {
-                    query = query.Include(propertySelector);
+                    query = query.Include(propertySelector).AsNoTracking();
                 }
             }
 
@@ -114,7 +116,11 @@ namespace MicroService.EntityFramwork
         }
        public IQueryable<TEntity> Entities(Expression<Func<TEntity, bool>> expression)
         {
-          return  _dbSet.AsQueryable().Where(expression);
+            //_dbContext.Entry(entity).State = EntityState.Modified;
+            var data= _dbSet.Where(expression).AsNoTracking();
+   
+           
+           return data;
         }
         public List<TEntity> GetAllList()
         {
