@@ -21,13 +21,12 @@ namespace MicroService.EntityFramwork
     {
 
 
+
+
         public UnitOfWorkDbContext()
         {
 
         }
-        //public DbSet<LZN.Core.Model.Person> People { get; set; }
-
-
 
         public UnitOfWorkDbContext(DbContextOptions<DbContext> dbContextOptions):base(dbContextOptions)
         {

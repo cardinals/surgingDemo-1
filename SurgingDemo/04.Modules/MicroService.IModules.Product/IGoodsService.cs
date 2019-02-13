@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MicroService.IApplication.Product.Dto;
 using System.Data;
+using Surging.Core.CPlatform.Filters.Implementation;
+using MicroService.Data.Common;
 
 namespace MicroService.IModules.Product
 {
@@ -14,6 +16,9 @@ namespace MicroService.IModules.Product
     public interface IGoodsService: IServiceKey
     {
         Task<JsonResponse> Add( GoodsRequestDto goodsRequestDto);
+
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<PageData> GetPageList(GoodsoPageRequestDto goodsoPageRequestDto);
         Task<DataTable> GetList();
     }
 }

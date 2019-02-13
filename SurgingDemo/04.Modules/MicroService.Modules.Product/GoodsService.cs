@@ -9,6 +9,7 @@ using MicroService.IApplication.Product.Dto;
 using MicroService.Data.Validation;
 using System.Threading.Tasks;
 using System.Data;
+using MicroService.Data.Common;
 
 namespace MicroService.Modules.Product
 {
@@ -27,6 +28,11 @@ namespace MicroService.Modules.Product
         public async Task<DataTable> GetList()
         {
             return  await _goodsAppService.GetList();
+        }
+
+        public async Task<PageData> GetPageList(GoodsoPageRequestDto goodsoPageRequestDto)
+        {
+            return await _goodsAppService.GetPageListAsync(goodsoPageRequestDto);
         }
     }
 }

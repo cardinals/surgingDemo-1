@@ -8,10 +8,15 @@ namespace MicroService.EntityFramwork.Mysql
 {
     public class MySqlDbContext : UnitOfWorkDbContext
     {
+        public MySqlDbContext()
+        {
 
+        }
         public MySqlDbContext(DbContextOptions<DbContext> dbContextOptions) : base(dbContextOptions)
         {
         }
+     
+    
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

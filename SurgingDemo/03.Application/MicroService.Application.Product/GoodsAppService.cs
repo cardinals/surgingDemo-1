@@ -14,6 +14,9 @@ using MicroService.Data.Extensions;
 using System.Data;
 using System.Data.Common;
 using System.Reflection.Metadata;
+using MicroService.Data.Common;
+using Microsoft.EntityFrameworkCore;
+using MicroService.Data.Ext;
 
 namespace MicroService.Application.Product
 {
@@ -60,6 +63,14 @@ namespace MicroService.Application.Product
             dic.Add("@price", 100);
             return await _personRespository.SqlQueryDataTable("select * from Goods where Price>@price",
              dic);
+        }
+
+        public async Task<PageData> GetPageListAsync(GoodsoPageRequestDto goodsoPageRequestDto)
+        {
+            var pageData = new PageData(goodsoPageRequestDto.PageIndex, goodsoPageRequestDto.PageSize);
+            var list = await _personRespository.Entities(e => e.IsDelete == false).ToPaginated(pageData).ToListAsync();
+            pageData.Data = list;
+            return pageData;
         }
     }
 }

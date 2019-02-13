@@ -16,7 +16,7 @@ namespace MicroService.Data.Common
             {
                 throw new ArgumentNullException("sources");
             }
-
+            pageData.Total = sources.Count();
             return sources.Skip((pageData.PageIndex - 1) * pageData.PageSize).Take(pageData.PageSize);
         }
 

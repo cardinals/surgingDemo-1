@@ -1,6 +1,7 @@
 ﻿
 using MicroService.Core;
 using MicroService.Data;
+using MicroService.Data.Common;
 using MicroService.Data.Validation;
 using MicroService.IApplication.Product.Dto;
 using System;
@@ -15,7 +16,7 @@ namespace MicroService.IApplication.Product
     public interface IGoodsAppService : IDependency
     {
         Task<JsonResponse> Create(GoodsRequestDto goodsRequestDto);
-
+        Task <PageData> GetPageListAsync(GoodsoPageRequestDto goodsoPageRequestDto);
         Task<DataTable> GetList();
     }
 }
