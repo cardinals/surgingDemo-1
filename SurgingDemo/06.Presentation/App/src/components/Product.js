@@ -28,7 +28,6 @@ export default class List extends react.Component {
         debugger
         return (
             <div>
-1
                 <Row >
                     <Col span={4} >
                         <div className={styles.appItem} onClick={this.props.AddToggle}>
@@ -56,7 +55,7 @@ export default class List extends react.Component {
                                     }
                                 }>
                                     <div className={styles.appIcon}>
-                                        <img src={`${fileServer}${ele.icon}`}></img>
+                                        <img src={`${ele.CoverImgSrc}`}></img>
                                     </div>
                                     <div className={styles.appTitle}>{ele.Name}</div>
 

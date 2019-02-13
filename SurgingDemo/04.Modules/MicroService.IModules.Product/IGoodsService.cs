@@ -19,6 +19,8 @@ namespace MicroService.IModules.Product
 
         [Authorization(AuthType = AuthorizationType.JWT)]
         Task<PageData> GetPageList(GoodsoPageRequestDto goodsoPageRequestDto);
+
+
         Task<DataTable> GetList();
     }
 }

@@ -141,6 +141,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.EntityFramwork
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.EntityFramwork.Oracle", "01.Infrastructure\MicroService.EntityFramwork.Oracle\MicroService.EntityFramwork.Oracle.csproj", "{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{C210C1FF-9908-465A-B659-85DAD43973F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -359,6 +361,10 @@ Global
 		{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C210C1FF-9908-465A-B659-85DAD43973F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C210C1FF-9908-465A-B659-85DAD43973F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C210C1FF-9908-465A-B659-85DAD43973F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C210C1FF-9908-465A-B659-85DAD43973F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -426,6 +432,7 @@ Global
 		{EB7A23A6-EF50-426D-BB9F-CF66C25E9C69} = {FB63EB18-788F-4F7E-8FDA-2AD1B948D077}
 		{AA44EAA5-63D9-4010-996E-34880325139C} = {FB63EB18-788F-4F7E-8FDA-2AD1B948D077}
 		{5C334190-B917-48D5-B0D0-5ED8A3C7FB4C} = {FB63EB18-788F-4F7E-8FDA-2AD1B948D077}
+		{C210C1FF-9908-465A-B659-85DAD43973F6} = {40736A18-06E6-4019-873D-6B1959E3AB94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06DBEFE0-3324-46E0-BEB9-4031978DF3BE}
