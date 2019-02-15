@@ -39,8 +39,8 @@ const ApplicationRoute = ({ location, dispatch, application }) => {
     },
     GoDetail(item){
       dispatch(routerRedux.push({
-        pathname:`/main/application/detail`,
-        search:`type=Modify&tabId=${item.id}`
+        pathname:`/app/detail/${item.Id}`,
+       // search:`type=Modify&tabId=${item.id}`
       }))
     },
     AppCateGoryGetAll(){

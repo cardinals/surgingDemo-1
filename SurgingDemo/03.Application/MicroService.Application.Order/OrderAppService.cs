@@ -68,7 +68,7 @@ namespace MicroService.Application.Order
         }
         public async Task<JsonResponse> CreateAsync(OrderInfoRequestDto orderInfoRequestDto)
         {
-            orderInfoRequestDto.Id = Guid.NewGuid().ToString();
+         
           
             var resJson = await TryTransactionAsync(async () =>
               {

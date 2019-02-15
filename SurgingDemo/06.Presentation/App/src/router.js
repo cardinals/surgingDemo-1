@@ -6,12 +6,11 @@ import Product from '../src/routes/Product'
 import ProductDetail from '../src/routes/ProductDetail'
 function RouterConfig({ history }) {
 
-  const App = ({match}) => {
+  const App = ({match,location,history}) => {
 debugger
     return (
       <Switch>
-        <Route path={match.path}  component={Product}/>
-        <Route path={`${match.path}/Product`}  component={Product}/>
+        <Route path={`${match.path}/product`} exact component={Product}/>
         <Route path={`${match.path}/detail/:id`}  component={ProductDetail}/>
       </Switch>
     )
@@ -19,7 +18,6 @@ debugger
   return (
     <Router history={history}>
       <Switch>
-        <AuthorizedRoute path="/"  component={App} />
         <AuthorizedRoute path="/app"  component={App} />
       </Switch>
     </Router>

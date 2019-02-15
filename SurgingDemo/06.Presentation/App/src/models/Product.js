@@ -13,6 +13,7 @@ export default {
     appList: [],
     appPageInfo: {},
     loading: false,
+    
 
 
   },

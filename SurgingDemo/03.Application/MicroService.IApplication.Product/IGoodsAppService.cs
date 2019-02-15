@@ -17,6 +17,9 @@ namespace MicroService.IApplication.Product
     {
         Task<JsonResponse> Create(GoodsRequestDto goodsRequestDto);
         Task <PageData> GetPageListAsync(GoodsoPageRequestDto goodsoPageRequestDto);
+        Task<GoodsQueryDto> GetForModifyAsync(EntityQueryRequest entityQueryRequest);
+
+        Task<IEnumerable<GoodsQueryDto>> GetGoodsByIds(EntityQueryRequest entityQueryRequest);
         Task<DataTable> GetList();
     }
 }

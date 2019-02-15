@@ -34,8 +34,10 @@ debugger
       if (errors) {
         return
       }
-      this.props.onOk(values)
+    !this.props.isRegister?  this.props.onOk(values):
+    this.props.Regisger(values)
     })
+    
   }
   render() {
     const {
@@ -45,15 +47,17 @@ debugger
       isFieldTouched,
       getFieldError
   } = this.props.form;
+  const {isRegister}=this.props;
     const userNameError = isFieldTouched('username') && getFieldError('userName');
     const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
       <div className={styles.form}>
         <div className={styles.logo}>
-          <img src={config.logoSrc} />
-          <span>企业Sass</span>
+          <span>surging demo {!isRegister?"登录":"注册"}</span>
         </div>
-        <form>
+        {
+          !isRegister?
+          <form>
           <FormItem validateStatus={userNameError ? 'error' : ''}
             help={userNameError || ''} hasFeedback>
             {getFieldDecorator('Name', {
@@ -80,8 +84,42 @@ debugger
             <Button type="primary" size="large" disabled={hasError(getFieldsError())} onClick={this.handleOk} loading={this.props.loginButtonLoading}>
               登录
           </Button>
+          <span onClick={this.props.RegisterToggle} className={styles.register}>注册</span>
           </Row>
-        </form>
+        </form>:
+        <form>
+        <FormItem validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''} hasFeedback>
+          {getFieldDecorator('Name', {
+            rules: [
+              {
+                required: true,
+                message: '请填写用户名'
+              }
+            ]
+          })(<Input prefix={<Icon type="user"></Icon>} size="large" placeholder="用户名" />)}
+        </FormItem>
+        <FormItem validateStatus={passwordError ? 'error' : ''}
+          help={passwordError || ''} hasFeedback>
+          {getFieldDecorator('Password', {
+            rules: [
+              {
+                required: true,
+                message: '请填写密码'
+              }
+            ]
+          })(<Input size="large" prefix={<Icon type="lock" />} type="password" placeholder="密码" />)}
+        </FormItem>
+        <Row>
+          <Button type="primary" size="large" disabled={hasError(getFieldsError())} 
+          onClick={this.handleOk} loading={this.props.loginButtonLoading}>
+            注册
+        </Button>
+        <span onClick={this.props.RegisterToggle}  className={styles.register}>登录</span>
+        </Row>
+      </form>
+        }
+      
       </div>
     )
   }

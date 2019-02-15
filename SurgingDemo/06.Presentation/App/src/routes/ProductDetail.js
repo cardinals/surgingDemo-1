@@ -2,17 +2,27 @@ import React, { PropTypes } from 'react';
 import { connect } from 'dva';
 import ProductDetail from '../components/ProductDetail';
 
-function ProductDetailRoute({ location, dispatch, productDetail,history }) {
-   
+function ProductDetailRoute({ match, dispatch, productDetail,history }) {
+   const {info}=productDetail;
     const ProductDetailProps = {
-        onOk(data) {
+        info,
+        GetForModify() {
             debugger
             dispatch({
-                type: 'productDetail/LoginOn',
-                payload: data,
+                type: 'productDetail/GetForModify',
+                payload: {id:match.params.id},
               
             })
          
+        },
+        CreateOrder(item){
+            var goodsList=[];
+            goodsList.push(item)
+            dispatch({
+                type: 'productDetail/CreateOrder',
+                payload: {GoodsRequests:goodsList}
+              
+            })
         }
     }
     return (

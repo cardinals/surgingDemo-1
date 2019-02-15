@@ -3,16 +3,27 @@ import { connect } from 'dva';
 import Login from '../components/Login';
 
 function LoginRoute({ location, dispatch, login,history }) {
-    console.log("login"+login)
+   const{isRegister}=login;
     const LoginProps = {
+        isRegister,
         onOk(data) {
-            debugger
             dispatch({
                 type: 'login/LoginOn',
                 payload: data,
               
             })
          
+        },
+        Regisger(data){
+            dispatch({
+                type: 'login/Regisger'  ,
+                payload:data            
+            })
+        },
+        RegisterToggle(){
+            dispatch({
+                type: 'login/RegisterToggle'              
+            })
         }
     }
     return (

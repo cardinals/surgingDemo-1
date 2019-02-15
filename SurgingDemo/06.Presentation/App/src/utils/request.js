@@ -2,6 +2,7 @@ import fetch from 'dva/fetch';
 import config from './config'
 import com from './commom'
 function parseJSON(response) {
+  debugger
   return response.json();
 }
 

@@ -9,11 +9,22 @@ using System.Text;
 
 namespace MicroService.IApplication.Order.Dto
 {
+
+    public class GoodsRequest
+    {
+        public string GoodsId { set; get; }
+
+        public int Count { set; get; }
+    }
     [ProtoContract]
     [Serializable]
     public class OrderInfoRequestDto : LoginUser
     {
 
+      
+
+      public  IList<GoodsRequest> GoodsRequests { set; get; }
+     
         /// <summary>
         /// 订单号
         /// </summary>

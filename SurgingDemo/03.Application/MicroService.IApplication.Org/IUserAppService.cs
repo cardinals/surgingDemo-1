@@ -13,7 +13,7 @@ namespace MicroService.IApplication.Org
     
     public interface IUserAppService : IDependency
     {
-        Task<JsonResponse> Create(UserRequestDto personRequestDto);
+        Task<JsonResponse> CreateAsync(UserRequestDto personRequestDto);
 
         Task<string> InsertAndGetId(UserRequestDto personRequestDto);
 

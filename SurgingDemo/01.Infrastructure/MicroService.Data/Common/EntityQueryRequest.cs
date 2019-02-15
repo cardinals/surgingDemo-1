@@ -15,6 +15,8 @@ namespace MicroService.Data.Common
             set;
         }
 
+        public IList<string> Ids { set; get; }
+
         /// <summary>
         /// 所属公司Id
         /// </summary>

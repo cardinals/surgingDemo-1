@@ -72,5 +72,22 @@ namespace MicroService.Application.Product
             pageData.Data = list;
             return pageData;
         }
+        public async Task<GoodsQueryDto> GetForModifyAsync(EntityQueryRequest entityQueryRequest)
+        {
+            var entity = await _personRespository.Entities(e => e.Id == entityQueryRequest.Id).SingleOrDefaultAsync();
+            if (entity != null)
+            {
+                return entity.MapEntity<Goods, GoodsQueryDto>();
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<GoodsQueryDto>> GetGoodsByIds(EntityQueryRequest entityQueryRequest)
+        {
+            var list = await _personRespository.Entities(e => e.IsDelete == false && entityQueryRequest.Ids.Contains(e.Id)).ToListAsync();
+
+            return list.MapToList<Goods, GoodsQueryDto>();
+
+        }
     }
 }

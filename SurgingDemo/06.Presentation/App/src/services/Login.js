@@ -11,3 +11,11 @@ export async function Authentication(params) {
 		body: JSON.stringify(params),
 	})
 }
+export async function Regisger(params) {
+	return request(`/api/User/Register`, {
+		method: 'post',
+		mode: 'cors',
+    traditional: true,
+		body: JSON.stringify(params),
+	})
+}

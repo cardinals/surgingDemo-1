@@ -34,7 +34,7 @@ namespace MicroService.Entity.Order
         /// 订单状态
         /// </summary>
         [Required]
-        public OrderStatus Status { set; get; }
+        public OrderStatus Status { set; get; } = OrderStatus.NoPaid;
 
 
         /// <summary>

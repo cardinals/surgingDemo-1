@@ -27,7 +27,7 @@ export default class List extends react.Component {
         const { appList, appPageInfo } = this.props;
         debugger
         return (
-            <div>
+            <div className={styles.proWrap}>
                 <Row >
                 {/*
                     <Col span={4} >
@@ -42,7 +42,7 @@ export default class List extends react.Component {
 
 
                         appList.map(ele =>
-                            <Col span={4} >
+                            <Col span={8} >
                                 <div className={styles.appItem}
                                
                                 onClick={

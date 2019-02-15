@@ -1,4 +1,5 @@
 ﻿using MicroService.Data.Common;
+using MicroService.Data.Validation;
 using MicroService.IApplication.Org.Dto;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
@@ -13,6 +14,8 @@ namespace MicroService.IModules.Org
     public interface IUserService : IServiceKey
     {
         Task<LoginUser> Authentication(UserRequestDto userRequestDto);
+
+        Task<JsonResponse> Register(UserRequestDto userRequestDto);
 
     }
     

@@ -43,5 +43,14 @@ namespace MicroService.Modules.Product
             //    return pageData;
             //}
         }
+        public async Task<GoodsQueryDto> GetForModify(EntityQueryRequest entityQueryRequest)
+        {
+            return await _goodsAppService.GetForModifyAsync(entityQueryRequest);
+        }
+
+       public async Task<IEnumerable<GoodsQueryDto>> GetGoodsByIds(EntityQueryRequest entityQueryRequest)
+        {
+            return await _goodsAppService.GetGoodsByIds(entityQueryRequest);
+        }
     }
 }

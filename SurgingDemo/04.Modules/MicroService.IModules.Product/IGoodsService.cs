@@ -20,6 +20,11 @@ namespace MicroService.IModules.Product
         [Authorization(AuthType = AuthorizationType.JWT)]
         Task<PageData> GetPageList(GoodsoPageRequestDto goodsoPageRequestDto);
 
+        [Authorization(AuthType = AuthorizationType.JWT)]
+        Task<GoodsQueryDto> GetForModify(EntityQueryRequest entityQueryRequest);
+
+        Task<IEnumerable<GoodsQueryDto>> GetGoodsByIds(EntityQueryRequest entityQueryRequest);
+
 
         Task<DataTable> GetList();
     }

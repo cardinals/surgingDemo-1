@@ -28,7 +28,7 @@ namespace MicroService.Modules.Org
        
         public async Task<JsonResponse> Add(UserRequestDto userRequestDto)
         {
-            return await _userAppService.Create(userRequestDto);
+            return await _userAppService.CreateAsync(userRequestDto);
         }
 
         public async Task<bool> UploadFile(HttpFormCollection form)

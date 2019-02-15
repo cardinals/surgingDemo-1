@@ -1,34 +1,46 @@
 
 import { parse } from 'qs';
-import { Authentication } from '../services/Login'
+import { GetForModify,CreateOrder } from '../services/Product'
 import com from '../utils/commom'
+import {message} from 'antd';
 export default {
   namespace: 'productDetail',
   state: {
-    test:{abc:1232}
+    info:{
+
+    }
   },
   subscriptions: {
     sb: function () {
     }
   },
   effects: {
-    *LoginOn({ payload }, { call, put }) {  // eslint-disable-line
-    
-     debugger
-      const { data } = yield call(Authentication, parse({userRequestDto:payload}))
-      debugger
-
+    *GetForModify({ payload }, { call, put }) {  // eslint-disable-line
+      const { data } = yield call(GetForModify, parse({entityQueryRequest:payload}))
         if(data&&data.IsSucceed&&data.StatusCode===200){
-          com.SetPkey(data.Entity)
           yield put({
-            type:'authorize/Power'
+            type:'GetForModifySuc',
+            payload:{
+                     data:JSON.parse(data.Entity)
+            }
           })
         }
     },
+    *CreateOrder({ payload }, { call, put }){
+      message.loading('处理中...')
+      const { data } = yield call(CreateOrder, parse({orderInfoRequestDto:payload}))
+
+      if(data&&data.IsSucceed){
+          var json=JSON.parse(data.Entity);
+          if(json.IsValid){
+            message.success("购买成功!")
+          }
+      }
+    }
   },
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
+    GetForModifySuc(state, action) {
+      return { ...state, info:action.payload.data };
     }
   }
 };

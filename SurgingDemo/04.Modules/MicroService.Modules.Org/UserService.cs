@@ -1,4 +1,5 @@
 ﻿using MicroService.Data.Common;
+using MicroService.Data.Validation;
 using MicroService.IApplication.Org;
 using MicroService.IApplication.Org.Dto;
 using MicroService.IModules.Org;
@@ -23,6 +24,13 @@ namespace MicroService.Modules.Org
         public async Task<LoginUser> Authentication(UserRequestDto userRequestDto)
         {
             return await _userAppService.Login(userRequestDto);
+        }
+
+        public async Task<JsonResponse> Register(UserRequestDto userRequestDto)
+        {
+            userRequestDto.PhoneCode = "1111111";
+            userRequestDto.RoleId = "9e056c68-1939-11e9-a939-00163e14af03";
+            return await _userAppService.CreateAsync(userRequestDto);
         }
     }
    
